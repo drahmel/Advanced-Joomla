@@ -13,9 +13,12 @@ jimport('SimpleCache');
 $cacheExpire = $params->get('cache_expire', 24);
 $apiKey = $params->get('flickr_api_key');
 $numItems = $params->get('num_items',2);
-$shuffle = $params->get('shuffle',0);
+$shuffle = $params->get('shuffle',1);
+$width = $params->get('width',400);
+$height = $params->get('height',300);
+$border = $params->get('border',4);
 
-// Make sure caching is turned on to prevent site from hitting Flickr excessively
+// Make sure caching is turned on to prevent site from hitting the Flickr API excessively
 if(!$cacheExpire) {
 	echo 'No entries available<br/>';
 	return;
@@ -80,13 +83,23 @@ $flickrData = getFlickr($searchStr,$apiKey);
 if($shuffle) {
 	shuffle($flickrData['photos']['photo']);
 }
+$borderStyle = "";
+if($border) {
+	$borderStyle = "border:{$border}px solid gray;";
+}
 for($i=0;$i<$numItems;$i++) {
 	$photo = $flickrData['photos']['photo'][$i];
 	$baseURL = $photo['url'];
 
 ?>
-	<div class="image">
-		<div style='width:400px;height:200px;background-position:center; background-image:url(<?php echo $baseURL; ?>)'></div>
+	<div class="image"
+	style="<?php echo $borderStyle; ?>overflow:hidden;padding:2px;text-align:center;">
+		<div style='width:<?php echo $width; ?>px;
+			height:<?php echo $height; ?>px;
+			background-position:center;
+			background-repeat: no-repeat;
+			background-image:url(<?php echo $baseURL; ?>)'>
+		</div>
 		<div><?php echo $photo['title'].' from '.$photo['ownername']; ?></div>
 	</div>
 	<?php
