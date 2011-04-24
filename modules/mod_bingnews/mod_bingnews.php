@@ -8,13 +8,12 @@
 defined('_JEXEC') or die('Restricted access');
 
 jimport('SimpleCache');
-SimpleCache::getCache('mytest');
 
 $conf = &JFactory::getConfig();
 $caching = $conf->get('caching', 1);
 $bingApiKey = $conf->get('bing_api_key', 1);
 
-// Make sure caching is turned on to prevent site from hitting Twitter excessively
+// Make sure caching is turned on to prevent site from hitting Bing excessively
 if(!$caching) {
 	echo 'No entries available<br/>';
 	exit;

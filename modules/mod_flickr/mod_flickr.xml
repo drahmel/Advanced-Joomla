@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <install type="module" version="1.5.0">
-     <name>Twitter</name>
+     <name>Flickr</name>
      <version>1.0.0</version>
-     <description>This module will performs a Twitter search and displays the results</description>
+     <description>This module will performs a Flickr search and displays the first image</description>
      	<!-- This section is for Joomla 1.5 compatibility -->
 	<params>
-		<param name="facebook_page_id" type="text" default="" label="Facebook Page ID" 
-			description="The Page ID # of the FB page to link the Like widget." />
+		<param name="flickr_api_key" type="text" default="" label="Flickr API key" 
+			description="The API key that allows Flickr searches." />
 	</params>
      	<!-- This section is for Joomla 1.6 compatibility -->
  	<config>
 		<fields name="params">
 			<fieldset name="basic">
 				<field
-					name="facebook_page_id"
+					name="flickr_api_key"
 					type="text"
 					default=""
-					label="Facebook Page ID"
-					description="The Page ID # of the FB page to link the Like widget." />
+					label="Flickr API key"
+					description="The API key that allows Flickr searches." />
 			</fieldset>
 		</fields>
 	</config>
     <files>
-          <filename module="mod_twitter">mod_twitter.php</filename>
+          <filename module="mod_flickr">mod_flickr.php</filename>
      </files>
 </install>
