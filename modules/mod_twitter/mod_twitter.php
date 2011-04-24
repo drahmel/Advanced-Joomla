@@ -8,16 +8,18 @@
 defined('_JEXEC') or die('Restricted access');
 
 jimport('SimpleCache');
-SimpleCache::getCache('mytest');
 
-$conf = &JFactory::getConfig();
-$caching = $conf->get('caching', 1);
-$apiKey = $conf->get('twitter_api_key');
+// Get the module parameters set in the Module Manager
+$cacheExpire = $params->get('cache_expire', 4);
+// Not used now, but can be used for more advanced Twitter operations
+$apiKey = $params->get('twitter_api_key');
+$numItems = $params->get('num_items',3);
+$shuffle = $params->get('shuffle',0);
 
-// Make sure caching is turned on to prevent site from hitting Twitter excessively
-if(!$caching) {
+// Make sure caching is turned on to prevent site from hitting Bing excessively
+if(!$cacheExpire) {
 	echo 'No entries available<br/>';
-	exit;
+	return;
 }
 
 $document = &JFactory::getDocument();
@@ -43,8 +45,6 @@ if(empty($searchStr)) {
 if(!function_exists('getTwitter')) {
 	function getTwitter($searchStr,$forceUpdate=false) {
 		$searchStr = urlencode($searchStr);
-		// Make cache last for 1 hour -- 60s * 60m
-		$expire = 60*60;
 		$keyName = 'twitter_key_'.md5($searchStr);
 		$tweetData = false;
 		if(!$forceUpdate) {
@@ -54,7 +54,7 @@ if(!function_exists('getTwitter')) {
 			$url = 'http://search.twitter.com/search.json?q='.$searchStr;	//.'&nothing='.rand(0,2000);
 			$tweets = file_get_contents($url);
 			$tweetData = json_decode($tweets,true);
-			SimpleCache::setCache($keyName,$tweetData);
+			SimpleCache::setCache($keyName,$cacheExpire);
 		}
 		return $tweetData;
 	}
@@ -67,7 +67,7 @@ $i=0;
 //shuffle($tweetData['results']);
 foreach($tweetData['results'] as $tweet) {
 	$extraStyle = '';
-	if($i>=4) {
+	if($i>=$numItems) {
 		$extraStyle = 'display:none;';
 	}
 ?>

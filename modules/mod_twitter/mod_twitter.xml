@@ -5,19 +5,43 @@
      <description>This module will performs a Twitter search and displays the results</description>
      	<!-- This section is for Joomla 1.5 compatibility -->
 	<params>
-		<param name="facebook_page_id" type="text" default="" label="Facebook Page ID" 
-			description="The Page ID # of the FB page to link the Like widget." />
+		<param name="twitter_api_key" type="text" default="" label="Twitter API ID" 
+			description="Register on the Twitter API site and enter the API key here." />
+		<param name="cache_expire" type="int" default="4" label="Cache expire (hours)" 
+			description="Number of hours to cache results." />
+		<param name="num_items" type="int" default="3" label="# of items" 
+			description="Number of news items to display" />
+		<param name="shuffle" type="int" default="1" label="Shuffle" 
+			description="Shuffle item results" />
 	</params>
      	<!-- This section is for Joomla 1.6 compatibility -->
  	<config>
 		<fields name="params">
 			<fieldset name="basic">
 				<field
-					name="facebook_page_id"
+					name="twitter_api_key"
 					type="text"
 					default=""
-					label="Facebook Page ID"
-					description="The Page ID # of the FB page to link the Like widget." />
+					label="Twitter API ID"
+					description="Register on the Twitter API site and enter the API key here." />
+				<field 
+					name="cache_expire"
+					type="int"
+					default="4"
+					label="Cache expire (hours)"
+					description="Number of hours to cache results" />
+				<field 
+					name="num_items"
+					type="int"
+					default="3"
+					label="# of items"
+					description="Number of news items to display" />
+				<field 
+					name="shuffle"
+					type="int"
+					default="1"
+					label="Shuffle"
+					description="Shuffle item results" />
 			</fieldset>
 		</fields>
 	</config>
