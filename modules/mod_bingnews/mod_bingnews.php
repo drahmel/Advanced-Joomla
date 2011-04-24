@@ -1,6 +1,6 @@
 <?php
 /**
-* @version $Id: mod_bingnews.php 5203 2010-07-27 01:45:14Z DanR $
+* @version $Id: mod_bingnews.php 5203 2011-07-27 01:45:14Z DanR $
 * This module will displays a news entries from the Bing search API
 */
 
