@@ -87,6 +87,9 @@ $borderStyle = "";
 if($border) {
 	$borderStyle = "border:{$border}px solid gray;";
 }
+$totalItems = count($flickrData['photos']['photo']);
+// If there are fewer available items then the # requested, only display available
+$numItems = $totalItems < $numItems	?	$totalItems	:	$numItems; 
 for($i=0;$i<$numItems;$i++) {
 	$photo = $flickrData['photos']['photo'][$i];
 	$baseURL = $photo['url'];

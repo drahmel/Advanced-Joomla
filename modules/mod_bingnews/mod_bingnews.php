@@ -12,7 +12,7 @@ jimport('SimpleCache');
 // Get the module parameters set in the Module Manager
 $cacheExpire = $params->get('cache_expire', 4);
 $apiKey = $params->get('bing_api_key');
-$numNewsItems = $params->get('num_items',3);
+$numItems = $params->get('num_items',3);
 $shuffle = $params->get('shuffle',0);
 
 // Make sure caching is turned on to prevent site from hitting Bing excessively
@@ -77,7 +77,11 @@ $newsData = getBingNews($searchStr,$apiKey);
 if($shuffle) {
 	shuffle($newsData);
 }
-for($i=0;$i<$numNewsItems;$i++) {
+$totalItems = count($newsData[$i]);
+// If there are fewer available items then the # requested, only display available
+$numItems = $totalItems < $numItems	?	$totalItems	:	$numItems; 
+
+for($i=0;$i<$numItems;$i++) {
 	$newsItem = $newsData[$i];
 	?>
 	<div>
