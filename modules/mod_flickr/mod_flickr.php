@@ -8,15 +8,21 @@
 defined('_JEXEC') or die('Restricted access');
 
 jimport('SimpleCache');
-SimpleCache::getCache('mytest');
 
-$conf = &JFactory::getConfig();
-$caching = $conf->get('caching', 1);
-$apiKey = $conf->get('flickr_api_key');
+// Get the module parameters set in the Module Manager
+$cacheExpire = $params->get('cache_expire', 24);
+$apiKey = $params->get('flickr_api_key');
+$numItems = $params->get('num_items',2);
+$shuffle = $params->get('shuffle',0);
 
-// Make sure caching is turned on to prevent site from hitting Twitter excessively
-if(!$caching) {
+// Make sure caching is turned on to prevent site from hitting Flickr excessively
+if(!$cacheExpire) {
 	echo 'No entries available<br/>';
+	return;
+}
+if(empty($apiKey)) {
+	echo "Empty API key parameter. Use the Module Manager to set API key<br/>";
+	return;
 }
 
 $document = &JFactory::getDocument();
@@ -36,14 +42,12 @@ $searchStr = !empty($searchStr)	?	$searchStr	:	'joomla';
 
 
 if(!function_exists('getFlickr')) {
-	function getFlickr($searchStr,$forceUpdate=false) {
+	function getFlickr($searchStr,$apiKey,$forceUpdate=false) {
 		$searchStr = urlencode($searchStr);
-		// Make cache last for 1 day -- 60s * 60m * 24h
-		$expire = 60*60*24;
 		$keyName = 'flickr_key_'.md5($searchStr);
 		$data = false;
 		if(!$forceUpdate) {
-			$data = SimpleCache::getCache($keyName,$expire);
+			$data = SimpleCache::getCache($keyName,$cacheExpire);
 		}
 		if($data===false) {
 			$callMethod = 'flickr.photos.search';
@@ -72,14 +76,20 @@ if(!function_exists('getFlickr')) {
 	}
 }
 
-// Output all tweets but hide beyond a certain point
-$flickrData = getFlickr($searchStr);
-shuffle($flickrData['photos']['photo']);
-$photo = $flickrData['photos']['photo'][0];
-$baseURL = $photo['url'];
+$flickrData = getFlickr($searchStr,$apiKey);
+if($shuffle) {
+	shuffle($flickrData['photos']['photo']);
+}
+for($i=0;$i<$numItems;$i++) {
+	$photo = $flickrData['photos']['photo'][$i];
+	$baseURL = $photo['url'];
+
 ?>
-<div class="image">
-	<div style='width:400px;height:200px;background-position:center; background-image:url(<?php echo $baseURL; ?>)'></div>
-	<div><?php echo $photo['title'].' from '.$photo['ownername']; ?></div>
-</div>
+	<div class="image">
+		<div style='width:400px;height:200px;background-position:center; background-image:url(<?php echo $baseURL; ?>)'></div>
+		<div><?php echo $photo['title'].' from '.$photo['ownername']; ?></div>
+	</div>
+	<?php
+}
+
 ?>
