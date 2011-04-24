@@ -7,6 +7,8 @@
 	<params>
 		<param name="bing_api_key" type="text" default="" label="Bing API ID" 
 			description="Register on the Bing API site and enter the API key here." />
+		<param name="cache_expire" type="int" default="4" label="Cache expire (hours)" 
+			description="Number of hours to cache results." />
 	</params>
      	<!-- This section is for Joomla 1.6 compatibility -->
  	<config>
@@ -17,7 +19,13 @@
 					type="text"
 					default=""
 					label="Bing API ID"
-					description="Register on the Bing API site and enter the API key here." />
+					description="Register on the Bing API site and enter the API key here.Set to 0 to disable module." />
+				<field 
+					name="cache_expire"
+					type="int"
+					default="4"
+					label="Cache expire (hours)"
+					description="Number of hours to cache results" />
 			</fieldset>
 		</fields>
 	</config>
