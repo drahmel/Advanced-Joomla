@@ -12,6 +12,8 @@ jimport('SimpleCache');
 // Get the module parameters set in the Module Manager
 $cacheExpire = $params->get('cache_expire', 4);
 $apiKey = $params->get('bing_api_key');
+$numNewsItems = $params->get('num_items',3);
+$shuffle = $params->get('shuffle',0);
 
 // Make sure caching is turned on to prevent site from hitting Bing excessively
 if(!$cacheExpire) {
@@ -44,17 +46,22 @@ if(!function_exists('getBingNews')) {
 	function getBingNews($searchStr,$apiKey,$forceUpdate=false) {
 		$searchStr = urlencode($searchStr);
 		$keyName = 'news_key_'.md5($searchStr);
+		// Set a default value of false in case of force update
 		$data = false;
 		if(!$forceUpdate) {
 			$data = SimpleCache::getCache($keyName,$cacheExpire);
 		}
 		if($data===false) {			
-			$url = "http://api.bing.net/json.aspx?AppId={$apiKey}&sources=news&query={$searchStr}";
+			$url = "http://api.bing.net/json.aspx?AppId={$apiKey}"
+				."&sources=news&query={$searchStr}";
+			// Get JSON from API
 			$json = file_get_contents($url);
+			// Decode JSON to an array
 			$data = json_decode($json,true);
+			// If there is an error, log to PHP log
 			if(!isset($data['SearchResponse']['News'])) {
 				$msg = "Error:".print_r($data['SearchResponse'],true);
-				error_log($msg);
+				error_log($msg.$url);
 			} else {
 				$data = $data['SearchResponse']['News']['Results'];
 				SimpleCache::setCache($keyName,$data);
@@ -64,11 +71,13 @@ if(!function_exists('getBingNews')) {
 	}
 }
 
-// Output all tweets but hide beyond a certain point
+// Output number of news items specified in parameters
 $newsData = getBingNews($searchStr,$apiKey);
 //$news = $newsData['SearchResponse']['News']['Results'];
-//shuffle($newsData);
-for($i=0;$i<3;$i++) {
+if($shuffle) {
+	shuffle($newsData);
+}
+for($i=0;$i<$numNewsItems;$i++) {
 	$newsItem = $newsData[$i];
 	?>
 	<div>
