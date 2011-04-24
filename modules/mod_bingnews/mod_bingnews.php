@@ -41,9 +41,8 @@ $searchStr = !empty($searchStr)	?	$searchStr	:	'joomla';
 
 // In case multiple modules used on the same page, avoid redefining
 if(!function_exists('getBingNews')) {
-	function getBingNews($searchStr,$apiKey,$forceUpdate=true) {
+	function getBingNews($searchStr,$apiKey,$forceUpdate=false) {
 		$searchStr = urlencode($searchStr);
-		// Make cache last for 1 hour -- 60s * 60m
 		$keyName = 'news_key_'.md5($searchStr);
 		$data = false;
 		if(!$forceUpdate) {
