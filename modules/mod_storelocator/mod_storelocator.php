@@ -7,6 +7,7 @@
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 
+/*
 // Get the module parameters set in the Module Manager
 $cacheExpire = $params->get('cache_expire', 4);
 // Not used now, but can be used for more advanced Twitter operations
@@ -80,4 +81,75 @@ foreach($tweetData['results'] as $tweet) {
 <?php
 	$i++;
 }
+*/
+$app                = JFactory::getApplication();
+print_r($this);
 ?>
+
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="/modules/mod_storelocator/mod_storelocator.js"></script>
+<script type="text/javascript">
+function initStoreLocator() {
+
+	var mapOpts = {
+		zoom: 9,
+		center: new google.maps.LatLng(62.323907, -150.109291),
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	};
+
+	var map = new google.maps.Map(document.getElementById("map_canvas"), mapOpts);
+
+	var shadowSprite = "http://maps.gstatic.com/intl/en_us/mapfiles/markers/marker_sprite.png";
+	var shadow = new google.maps.MarkerImage(shadowSprite, 
+		new google.maps.Size(27, 34), 
+		new google.maps.Point(30, 0), 
+		new google.maps.Point(0, 34)
+	);
+
+	var marker = [];
+
+<?php
+$markers = array(array('name'=>'first','lat'=>62.281819,'long'=>-150.287132));
+
+// add in reverse order so higher rated pins appear on top of map (zindex)
+foreach ($markers as $i => $marker) { 
+	$enc_name = htmlspecialchars($marker['name'], ENT_QUOTES, 'UTF-8');
+	?>
+	marker[<?php echo $i; ?>] = 
+		new google.maps.Marker({
+			position: new google.maps.LatLng(
+				<?php echo $marker['lat']; ?>,
+				<?php echo $marker['long']; ?>),
+			map: map, title:"<?php echo $enc_name; ?>",
+			icon: new google.maps.MarkerImage("/modules/mod_storelocator/marker.png"),
+			shadow: shadow
+		});
+	<?php
+}
+?>
+	var overlay = [];
+	for (var i in marker) {
+		if (marker[i] == null) continue;
+		overlay[i] = new storelocatorToolTip({
+			map: map,
+			marker: marker[i]
+		});
+	}
+};
+
+window.onload = function() {
+	initStoreLocator();
+};
+</script>
+<div id="map_canvas" style="width: 100%; height: 300px;"></div>
+<style>
+	.storelocatorToolTip { 
+		-moz-border-radius:4px;
+		-webkit-border-radius:4px; 
+	}
+	.storelocatorToolTip { 
+		background:-moz-linear-gradient(top,#ffffff,#eeeeee,#cccccc);
+		background:-webkit-gradient(linear,left top,left bottom,from(#ffffff),color-stop(50%, #eeeeee),to(#cccccc)); 
+	}
+</style>
+
