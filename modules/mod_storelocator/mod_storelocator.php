@@ -86,62 +86,75 @@ $app                = JFactory::getApplication();
 print_r($this);
 ?>
 
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-<script type="text/javascript" src="/modules/mod_storelocator/mod_storelocator.js"></script>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<style type="text/css">
+  #map_canvas { height: 100% }
+</style>
+<script type="text/javascript"
+    src="http://maps.google.com/maps/api/js?sensor=false">
+</script>
 <script type="text/javascript">
-function initStoreLocator() {
+var storeMarker;
+var map;
 
-	var mapOpts = {
-		zoom: 9,
-		center: new google.maps.LatLng(62.323907, -150.109291),
+function initStoreLocator() {
+	var latlng = new google.maps.LatLng(-34.397, 150.644);
+	var myOptions = {
+		zoom: 8,
+		center: latlng,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
-
-	var map = new google.maps.Map(document.getElementById("map_canvas"), mapOpts);
-
-	var shadowSprite = "http://maps.gstatic.com/intl/en_us/mapfiles/markers/marker_sprite.png";
-	var shadow = new google.maps.MarkerImage(shadowSprite, 
-		new google.maps.Size(27, 34), 
-		new google.maps.Point(30, 0), 
-		new google.maps.Point(0, 34)
+	map = new google.maps.Map(
+		document.getElementById("map_canvas"),
+		myOptions
 	);
+	storeMarker = new google.maps.Marker({
+		position: latlng,
+		title:"Main street (click here)",
+		animation: google.maps.Animation.DROP,
+		map: map
+	});
+	storeMarker.iw = new google.maps.InfoWindow({
+		content: contentString
+	}); 
+	google.maps.event.addListener(storeMarker, 'click', toggleBounce);
+}
+var contentString = '<a href="/">Main street</a>';
+var infowindow = new google.maps.InfoWindow({
+    content: contentString
+});
 
-	var marker = [];
+function toggleBounce(o,o2) {
+	console.log(o);
+	console.log(this);
+	if (storeMarker.getAnimation() != null) {
+		storeMarker.setAnimation(null);
+		infowindow.close();
+	} else {
+		storeMarker.setAnimation(google.maps.Animation.BOUNCE);
+		infowindow.open(map,storeMarker);
+	}
+}
+</script>
 
+<div id="map_canvas" style="width: 100%; height: 300px;"></div>
+
+<script type="text/javascript">
+function junk() {
 <?php
 $markers = array(array('name'=>'first','lat'=>62.281819,'long'=>-150.287132));
 
 // add in reverse order so higher rated pins appear on top of map (zindex)
 foreach ($markers as $i => $marker) { 
 	$enc_name = htmlspecialchars($marker['name'], ENT_QUOTES, 'UTF-8');
-	?>
-	marker[<?php echo $i; ?>] = 
-		new google.maps.Marker({
-			position: new google.maps.LatLng(
-				<?php echo $marker['lat']; ?>,
-				<?php echo $marker['long']; ?>),
-			map: map, title:"<?php echo $enc_name; ?>",
-			icon: new google.maps.MarkerImage("/modules/mod_storelocator/marker.png"),
-			shadow: shadow
-		});
-	<?php
 }
 ?>
-	var overlay = [];
-	for (var i in marker) {
-		if (marker[i] == null) continue;
-		overlay[i] = new storelocatorToolTip({
-			map: map,
-			marker: marker[i]
-		});
-	}
-};
+}
 
 window.onload = function() {
 	initStoreLocator();
 };
 </script>
-<div id="map_canvas" style="width: 100%; height: 300px;"></div>
 <style>
 	.storelocatorToolTip { 
 		-moz-border-radius:4px;
