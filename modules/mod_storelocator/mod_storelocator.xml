@@ -5,27 +5,38 @@
      <description>This module will displays a Google map of store locations</description>
      	<!-- This section is for Joomla 1.5 compatibility -->
 	<params>
-		<param name="twitter_api_key" type="text" default="" label="Twitter API ID" 
-			description="Register on the Twitter API site and enter the API key here." />
-		<param name="cache_expire" type="int" default="4" label="Cache expire (hours)" 
-			description="Number of hours to cache results." />
+		<param name="center_latitude" type="text" default="-34.387" label="Map center latitude" 
+			description="Display map with this latitude at the center." />
+		<param name="center_longitude" type="text" default="150.634" label="Map center longitude" 
+			description="Display map with this longitude at the center." />
+		<param name="markers" type="textarea" default="" label="Markers (lat,long,title,url)" 
+			description="Marker entries" />
 	</params>
      	<!-- This section is for Joomla 1.6 compatibility -->
  	<config>
 		<fields name="params">
 			<fieldset name="basic">
 				<field
-					name="twitter_api_key"
+					name="center_latitude"
 					type="text"
-					default=""
-					label="Twitter API ID"
-					description="Register on the Twitter API site and enter the API key here." />
+					default="-34.387"
+					label="Map center latitude"
+					description="Display map with this latitude at the center." />
 				<field 
-					name="cache_expire"
-					type="int"
-					default="4"
-					label="Cache expire (hours)"
-					description="Number of hours to cache results" />
+					name="center_longitude"
+					type="text"
+					default="150.634"
+					label="Map center longitude"
+					description="Display map with this longitude at the center." />
+				<field 
+					name="markers"
+					type="textarea"
+					cols="50" 
+					rows="10"
+					default="-34.367,150.614,First St. store,/first-st|
+						-34.387,150.634,Second St. store,/second-st"
+					label="Markers (lat,long,title,url)"
+					description="Marker entries" />
 			</fieldset>
 		</fields>
 	</config>

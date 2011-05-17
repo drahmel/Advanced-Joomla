@@ -1,95 +1,47 @@
 <?php
 /**
-* @version $Id: mod_storelocator.php 5203 2010-07-27 01:45:14Z DanR $
+* @version $Id: mod_storelocator.php 5203 2011-07-27 01:45:14Z DanR $
 * This module will displays a Google Map widget of store locations
 */
 
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 
-/*
 // Get the module parameters set in the Module Manager
-$cacheExpire = $params->get('cache_expire', 4);
-// Not used now, but can be used for more advanced Twitter operations
-$apiKey = $params->get('twitter_api_key');
-$numItems = $params->get('num_items',3);
-$shuffle = $params->get('shuffle',0);
-
-// Make sure caching is turned on to prevent site from hitting Bing excessively
-if(!$cacheExpire) {
-	echo 'No entries available<br/>';
-	return;
+$markerParam = $params->get('markers');
+$markerEntries = explode('|',$markerParam);
+$markers = array();
+foreach($markerEntries as $markerEntry) {
+	if(!empty($markerEntry)) {
+		$temp = explode(',',$markerEntry);
+		$markers[] = array(
+			'lat'=>$temp[0],
+			'long'=>$temp[1],
+			'title'=>$temp[2],
+			'url'=>$temp[3]
+		);	
+	}
 }
-
+// Add some dummy data if no data supplied
+if(empty($markers)) {
+	$markers = array(
+		array('title'=>'Main St. store',
+			'lat'=>-34.397,'long'=>150.644,
+			'url'=>'/main-st'),
+		array('title'=>'2nd St. store',
+			'lat'=>-34.387,'long'=>150.634,
+			'url'=>'/2nd-st'),
+		array('title'=>'Plain Ave. store',
+			'lat'=>-34.357,'long'=>150.604,
+			'url'=>'/plain-ave'),
+		array('title'=>'Downtown store',
+			'lat'=>-34.307,'long'=>150.604,
+			'url'=>'/downtown')
+	);
+	
+}
 $document = &JFactory::getDocument();
-
-$metaTags = trim($document->_metaTags['standard']['keywords']);
-$keywords = explode(',',$metaTags);
-$keywordArray = array();
-// Filter for any empty keywords and eliminate duplicates
-for($i=0;$i<count($keywords);$i++) {
-	$keyword = strtolower(trim($keywords[$i]));
-	if(!empty($keyword)) {
-		$keywordArray[$keyword] = true;
-	}
-}
-$searchStr = implode('%20',array_keys($keywordArray));
-$searchStr = !empty($searchStr)	?	$searchStr	:	'joomla';
-if(empty($searchStr)) {
-	echo 'No entries available<br/>';
-	exit;
-}
-
-// In case multiple modules used on the same page, avoid redefining
-if(!function_exists('getTwitter')) {
-	function getTwitter($searchStr,$forceUpdate=false) {
-		$searchStr = urlencode($searchStr);
-		$keyName = 'twitter_key_'.md5($searchStr);
-		$tweetData = false;
-		if(!$forceUpdate) {
-			$tweetData = SimpleCache::getCache($keyName,$expire);
-		}
-		if($tweetData===false) {
-			$url = 'http://search.twitter.com/search.json?q='.$searchStr;	//.'&nothing='.rand(0,2000);
-			$tweets = file_get_contents($url);
-			$tweetData = json_decode($tweets,true);
-			SimpleCache::setCache($keyName,$cacheExpire);
-		}
-		return $tweetData;
-	}
-}
-
-// Output all tweets but hide beyond a certain point
-$tweetData = getTwitter($searchStr);
-
-$i=0;
-//shuffle($tweetData['results']);
-foreach($tweetData['results'] as $tweet) {
-	$extraStyle = '';
-	if($i>=$numItems) {
-		$extraStyle = 'display:none;';
-	}
-?>
-<div class="tweet" style='margin-bottom:10px;<?php echo $extraStyle; ?>'>
-<img src="<?php echo $tweet['profile_image_url']; ?>" align="left" width="48" height="48"
-	style="margin:5px;"
-	alt="<?php echo $tweet['from_user']; ?>" />
-<?php echo $tweet['text']; ?><br/>by <?php echo $tweet['from_user']; ?>. Link: 
-<?php echo html_entity_decode($tweet['source']); ?>
-</div>
-<div style="clear:both;"></div>
-<?php
-	$i++;
-}
-*/
 $app                = JFactory::getApplication();
-print_r($this);
-$markers = array(
-	array('name'=>'Main St. store','lat'=>-34.397,'long'=>150.644,'url'=>'/main-st'),
-	array('name'=>'2nd St. store','lat'=>-34.387,'long'=>150.634,'url'=>'/2nd-st'),
-	array('name'=>'Plain Ave. store','lat'=>-34.357,'long'=>150.604,'url'=>'/plain-ave'),
-	array('name'=>'Downtown store','lat'=>-34.307,'long'=>150.604,'url'=>'/downtown')
-);
 
 ?>
 
@@ -116,19 +68,20 @@ function initStoreLocator() {
 		myOptions
 	);
 <?php
-foreach ($markers as $i => $marker) { 
+foreach ($markers as $i => $marker) {
+	$encodeTitle = htmlspecialchars($marker['title'], ENT_QUOTES, 'UTF-8')
 ?>
 	var storeMarker = new google.maps.Marker({
 		position: new google.maps.LatLng(
 			<?php echo $marker['lat']; ?>, 
 			<?php echo $marker['long']; ?>
 		),
-		title:"<?php echo $marker['name']; ?> (click here)",
+		title:"<?php echo $encodeTitle; ?> (click here)",
 		animation: google.maps.Animation.DROP,
 		map: map
 	});
 	var contentString = '<center><a href="<?php echo $marker['url']; ?>">'+
-		'<?php echo $marker['name']; ?></a></center>';
+		'<?php echo $encodeTitle; ?></a></center>';
 	storeMarker.iw = new google.maps.InfoWindow({
 		content: contentString
 	}); 
@@ -146,21 +99,11 @@ function toggleBounce() {
 		this.iw.open(map,this);
 	}
 }
-</script>
-
-<div id="map_canvas" style="width: 100%; height: 300px;"></div>
-
-<script type="text/javascript">
-function junk() {
-<?php
-foreach ($markers as $i => $marker) { 
-	$enc_name = htmlspecialchars($marker['name'], ENT_QUOTES, 'UTF-8');
-}
-?>
-}
-
 window.onload = function() {
 	initStoreLocator();
 };
+
 </script>
+
+<div id="map_canvas" style="width: 100%; height: 300px;"></div>
 
