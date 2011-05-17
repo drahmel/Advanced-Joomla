@@ -84,6 +84,13 @@ foreach($tweetData['results'] as $tweet) {
 */
 $app                = JFactory::getApplication();
 print_r($this);
+$markers = array(
+	array('name'=>'Main St. store','lat'=>-34.397,'long'=>150.644,'url'=>'/main-st'),
+	array('name'=>'2nd St. store','lat'=>-34.387,'long'=>150.634,'url'=>'/2nd-st'),
+	array('name'=>'Plain Ave. store','lat'=>-34.357,'long'=>150.604,'url'=>'/plain-ave'),
+	array('name'=>'Downtown store','lat'=>-34.307,'long'=>150.604,'url'=>'/downtown')
+);
+
 ?>
 
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
@@ -98,9 +105,9 @@ var storeMarker;
 var map;
 
 function initStoreLocator() {
-	var latlng = new google.maps.LatLng(-34.397, 150.644);
+	var latlng = new google.maps.LatLng(-34.357, 150.604);
 	var myOptions = {
-		zoom: 8,
+		zoom: 11,
 		center: latlng,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
@@ -108,26 +115,35 @@ function initStoreLocator() {
 		document.getElementById("map_canvas"),
 		myOptions
 	);
-	storeMarker = new google.maps.Marker({
-		position: latlng,
-		title:"Main street (click here)",
+<?php
+foreach ($markers as $i => $marker) { 
+?>
+	var storeMarker = new google.maps.Marker({
+		position: new google.maps.LatLng(
+			<?php echo $marker['lat']; ?>, 
+			<?php echo $marker['long']; ?>
+		),
+		title:"<?php echo $marker['name']; ?> (click here)",
 		animation: google.maps.Animation.DROP,
 		map: map
 	});
-	var contentString = '<a href="/">Main street</a>';
+	var contentString = '<center><a href="<?php echo $marker['url']; ?>">'+
+		'<?php echo $marker['name']; ?></a></center>';
 	storeMarker.iw = new google.maps.InfoWindow({
 		content: contentString
 	}); 
 	google.maps.event.addListener(storeMarker, 'click', toggleBounce);
+<?php } ?>
 }
 
 function toggleBounce() {
+	console.log(this.iw);
 	if (this.getAnimation() != null) {
 		this.setAnimation(null);
 		this.iw.close();
 	} else {
 		this.setAnimation(google.maps.Animation.BOUNCE);
-		this.iw.open(map,storeMarker);
+		this.iw.open(map,this);
 	}
 }
 </script>
@@ -137,9 +153,6 @@ function toggleBounce() {
 <script type="text/javascript">
 function junk() {
 <?php
-$markers = array(array('name'=>'first','lat'=>62.281819,'long'=>-150.287132));
-
-// add in reverse order so higher rated pins appear on top of map (zindex)
 foreach ($markers as $i => $marker) { 
 	$enc_name = htmlspecialchars($marker['name'], ENT_QUOTES, 'UTF-8');
 }
