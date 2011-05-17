@@ -85,7 +85,10 @@ for($i=0;$i<$numItems;$i++) {
 	$newsItem = $newsData[$i];
 	?>
 	<div>
-		<div class="title"><a href="<?php echo $newsItem['Url']; ?>"><?php echo $newsItem['Title']; ?></a> from <?php echo $newsItem['Source']; ?></div>
+		<div class="title">
+		<a href="<?php echo $newsItem['Url']; ?>">
+			<?php echo $newsItem['Title']; ?>
+		</a> from <?php echo $newsItem['Source']; ?></div>
 		<div><?php echo $newsItem['Snippet']; ?></div>
 	</div>
 	<?php
