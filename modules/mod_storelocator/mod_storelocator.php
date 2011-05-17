@@ -1,13 +1,11 @@
 <?php
 /**
-* @version $Id: mod_twitter.php 5203 2010-07-27 01:45:14Z DanR $
-* This module will displays a Twitter entries based on search keywords
+* @version $Id: mod_storelocator.php 5203 2010-07-27 01:45:14Z DanR $
+* This module will displays a Google Map widget of store locations
 */
 
 // no direct access
 defined('_JEXEC') or die('Restricted access');
-
-jimport('SimpleCache');
 
 // Get the module parameters set in the Module Manager
 $cacheExpire = $params->get('cache_expire', 4);
