@@ -114,25 +114,20 @@ function initStoreLocator() {
 		animation: google.maps.Animation.DROP,
 		map: map
 	});
+	var contentString = '<a href="/">Main street</a>';
 	storeMarker.iw = new google.maps.InfoWindow({
 		content: contentString
 	}); 
 	google.maps.event.addListener(storeMarker, 'click', toggleBounce);
 }
-var contentString = '<a href="/">Main street</a>';
-var infowindow = new google.maps.InfoWindow({
-    content: contentString
-});
 
-function toggleBounce(o,o2) {
-	console.log(o);
-	console.log(this);
-	if (storeMarker.getAnimation() != null) {
-		storeMarker.setAnimation(null);
-		infowindow.close();
+function toggleBounce() {
+	if (this.getAnimation() != null) {
+		this.setAnimation(null);
+		this.iw.close();
 	} else {
-		storeMarker.setAnimation(google.maps.Animation.BOUNCE);
-		infowindow.open(map,storeMarker);
+		this.setAnimation(google.maps.Animation.BOUNCE);
+		this.iw.open(map,storeMarker);
 	}
 }
 </script>
@@ -155,14 +150,4 @@ window.onload = function() {
 	initStoreLocator();
 };
 </script>
-<style>
-	.storelocatorToolTip { 
-		-moz-border-radius:4px;
-		-webkit-border-radius:4px; 
-	}
-	.storelocatorToolTip { 
-		background:-moz-linear-gradient(top,#ffffff,#eeeeee,#cccccc);
-		background:-webkit-gradient(linear,left top,left bottom,from(#ffffff),color-stop(50%, #eeeeee),to(#cccccc)); 
-	}
-</style>
 
