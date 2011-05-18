@@ -43,6 +43,11 @@ Sample code of widgets demonstrated in Advanced Joomla.
 * google_map_wizard (ch2)
 * survey_monkey (ch2)
 
+h3. SQL statements
+
+Query examples from chapter 9 and a PHP script to convert all Joomla tables from MyISAM to InnoDB.
+
+
 h1. Copyright
 
 * Copyright (c) 2011 Dan Rahmel. All rights reserved.
