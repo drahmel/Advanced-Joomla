@@ -37,13 +37,11 @@ media/
 modules/index.html
 administrator/
 robots.txt
-templates/
 libraries/index.html
 libraries/joomla/
 libraries/loader.php
 libraries/phpmailer/
 libraries/phputf8/
 libraries/simplepie/
-components/
 web.config.txt
 plugins/
