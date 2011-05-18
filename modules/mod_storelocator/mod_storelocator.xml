@@ -2,7 +2,12 @@
 <install type="module" version="1.5.0">
      <name>Store Locator</name>
      <version>1.0.0</version>
-     <description>This module will displays a Google map of store locations</description>
+     <description>This module will displays a Google map of store locations.<br/>
+     Learn how to create this extension and many others in Advanced Joomla from APress:<br/>
+     <a href='http://www.amazon.com/Advanced-Joomla-Dan-Rahmel/dp/143021628X'>
+     /modules/mod_storelocator/advanced_joomla_cover.jpg
+     </a>
+     </description>
      	<!-- This section is for Joomla 1.5 compatibility -->
 	<params>
 		<param name="center_latitude" type="text" default="-34.387" label="Map center latitude" 
