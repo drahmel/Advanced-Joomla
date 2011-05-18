@@ -18,10 +18,10 @@ A variety of extensions including:
 
 h3. Modules
 
-* mod_twitter -- Module that uses the Twitter API to search using Twitter keywords and display relevant tweets
-* mod_bingnews -- Modules that searches the Bing news API and displays relevant new items
-* mod_flickr -- Searches the Flickr API for images that match a search term
-* mod_store_locator -- Google Map module that displays store locations configured in the module administrator interface
+* mod_twitter (ch6) -- Module that uses the Twitter API to search using Twitter keywords and display relevant tweets
+* mod_bingnews (ch6) -- Modules that searches the Bing news API and displays relevant new items
+* mod_flickr (ch6) -- Searches the Flickr API for images that match a search term
+* mod_store_locator (ch6) -- Google Map module that displays store locations configured in the module administrator interface
 * mod_facebook_like -- Adds a Facebook Like button to specified pages
 
 h3. Components
@@ -32,8 +32,16 @@ h3. Components
 
 h3. Templates
 
-* aj_dynamic -- Completely dynamic Joomla template
-	
+* aj_dynamic (ch3) -- Completely dynamic Joomla template
+
+h3. Widgets
+
+Sample code of widgets demonstrated in Advanced Joomla.
+
+* chatango (ch2)
+* google_calendar (ch2)
+* google_map_wizard (ch2)
+* survey_monkey (ch2)
 
 h1. Copyright
 
