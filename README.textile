@@ -26,9 +26,11 @@ h3. Modules
 
 h3. Components
 	
-* com_article_historian -- Displays list of article versions
+* com_article_librarian (ch13) -- Displays list of article versions
+* com_article_stencial (ch12) -- Templating engine for articles
 * com_form_builder -- Allows construction of dynamic forms
 * com_ajax_request -- Simple article insertion through Ajax call
+* com_barchart (ch13) -- Create server-side bar charts with gradient fills
 
 h3. Templates
 
