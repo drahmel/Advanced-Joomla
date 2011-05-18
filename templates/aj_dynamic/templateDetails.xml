@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE install PUBLIC "-//Joomla! 1.6//DTD template 1.0//EN" "http://dev.joomla.org/xml/1.6/template-install.dtd">
+<install version="1.5" type="template">
+	<name>Advanced Joomla Dynamic Template</name>
+	<creationDate>07/10/11</creationDate>
+	<author>Dan Rahmel</author>
+	<authorUrl>http://www.joomlajumpstart.com</authorUrl>
+	<copyright>Dan Rahmel</copyright>
+	<license>GNU/GPL</license>
+	<version>0.1</version>
+	<description>Dynamic template for Advanced Joomla book</description>
+	<files>
+		<filename>index.php</filename>
+		<filename>templateDetails.xml</filename>
+		<filename>template_thumbnail.png</filename>
+		<filename>params.ini</filename>
+		<filename>images/arrow.png</filename>
+		<filename>images/indent1.png</filename>
+		<filename>images/indent2.png</filename>
+		<filename>images/indent3.png</filename>
+		<filename>images/indent4.png</filename>
+		<filename>images/index.html</filename>
+
+		<filename>images/spacer.png</filename>
+		<filename>css/index.html</filename>
+		<filename>css/template.css</filename>
+		<filename>css/common.css</filename>
+		<filename>css/main.css</filename>
+		<filename>css/editor.css</filename>
+		<filename>css/ieonly.css</filename>
+	</files>
+	<positions>
+		<position>top</position>
+		<position>topbanner</position>
+		<position>explore-viewall</position>
+		<position>topright</position>
+		<position>midright</position>
+		<position>bottomright</position>
+		<position>debug</position>
+		<position>syndicate</position>
+		<position>copyright</position>
+		<position>footer</position>
+		<position>sitesearch</position>
+		<position>preloadimages</position>
+		<position>dev</position>
+		<position>debug</position>
+	</positions>
+	<params>
+		<param name="columncolor" type="text" default="FF0000" label="Column Color" description="The background color for the template column." />
+
+	</params>
+</install>
