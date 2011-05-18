@@ -17,8 +17,8 @@ h2. Modules
 * mod_twitter -- Module that uses the Twitter API to search using Twitter keywords and display relevant tweets
 * mod_bingnews -- Modules that searches the Bing news API and displays relevant new items
 * mod_flickr -- Searches the Flickr API for images that match a search term
-* mod_store_locator
-* mod_facebook_like
+* mod_store_locator -- Google Map module that displays store locations configured in the module administrator interface
+* mod_facebook_like -- Adds a Facebook Like button to specified pages
 
 h2. Components
 	
