@@ -176,5 +176,4 @@ class cChart {
 	}
 }
 
-//cChart::renderBarChart(@$_REQUEST['title'],@$_REQUEST['xdata'],@$_REQUEST['ydata'],@$_REQUEST['imgtype'],@$_REQUEST['width'],@$_REQUEST['height']); // 940,150
 ?>

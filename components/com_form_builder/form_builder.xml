@@ -12,8 +12,11 @@
 	<administration>
 		<menu>Article Historian</menu>
 		<submenu>
-			<menu link="index.php?option=com_article_historian&task=display" view="banners" img="class:banners"
-				alt="Banners/Banners">Banners</menu>
+			<menu link="index.php?option=com_article_historian&task=display" 
+				view="banners" img="class:banners"
+				alt="Banners/Banners">
+				Banners
+			</menu>
 		</submenu>
 		<files folder="admin">
 	</administration>

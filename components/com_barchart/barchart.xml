@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="1.6.0" method="upgrade">
+	<name>com_barchart</name>
+	<author>Dan Rahmel</author>
+	<creationDate>May 2011</creationDate>
+	<version>1.6.0</version>
+	<description>Barchart component<br/>
+	You can access a database demo here:<br/>
+	/index.php?option=com_barchart&format=raw&type=db
+	</description>
+
+	<files folder="site">
+		<filename>barchart.php</filename>
+	</files>
+	<administration>
+		<menu>Barchart</menu>
+		<submenu>
+			<menu link="index.php?option=com_barchart&task=display" 
+				view="barchart" img="class:barchart"
+				alt="Barchart">
+				Barchart
+			</menu>
+		</submenu>
+		<files folder="admin" />
+	</administration>
+</extension>
+

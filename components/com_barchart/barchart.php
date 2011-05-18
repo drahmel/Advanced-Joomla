@@ -59,6 +59,8 @@ if($chartType=='db') {
 } else {
 	// If not a database query, use the REQUEST string data
 }
+//cChart::renderBarChart(@$_REQUEST['title'],@$_REQUEST['xdata'],@$_REQUEST['ydata'],@$_REQUEST['imgtype'],@$_REQUEST['width'],@$_REQUEST['height']); // 940,150
+
 // Render the chart with the current parameters
 cChart::renderBarChart($titleStr,$xStr,$yStr,$imageType,$chartWidth,$chartHeight);
 // Get a reference to the current JDocument object
