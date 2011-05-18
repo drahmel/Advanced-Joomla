@@ -10,6 +10,8 @@ h2. What is Advanced Joomla!?
 
 A book from APress that covers advanced template design (including mobile), extension creation, and full site configuration.
 
+!http://www.joomlajumpstart.com/images/icons/advanced_joomla_cover.jpg(Advanced Joomla cover)!
+
 h2. What is included in the source code?
 
 A variety of extensions including:
@@ -24,14 +26,15 @@ h3. Modules
 
 h3. Components
 	
-* com_article_historian
-* com_form_builder
-* com_ajax_request
+* com_article_historian -- Displays list of article versions
+* com_form_builder -- Allows construction of dynamic forms
+* com_ajax_request -- Simple article insertion through Ajax call
 
 h3. Templates
 
 * aj_dynamic -- Completely dynamic Joomla template
 	
 
-Copyright:
-	* Copyright (C) 2011 Dan Rahmel. All rights reserved.
+h1. Copyright
+
+* Copyright (c) 2011 Dan Rahmel. All rights reserved.
