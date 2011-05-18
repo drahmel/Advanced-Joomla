@@ -1,7 +1,7 @@
 <?php
 /**
 * @name             barchart.php
-* @revisiondate     $Date: 2008-09-12 13:33:44 -0700 $
+* @revisiondate     $Date: 2008-09-12 13:33:44 -0700 (Fri, 12 Sep 2008) $
 * @revision         $Rev: 2792 $
 * @revauthor        $Author: danr $
 * @version          $Id: barchart.php 2792 2008-09-12 20:33:44Z danr $
@@ -21,13 +21,13 @@ if($outFormat!='raw') {
 require_once('cChart.php');
 
 // Get request parameters if they're available
-$chartType = JRequest::getVar('type','');	
-$xStr = JRequest::getVar('xdata','A,B');	
-$yStr = JRequest::getVar('ydata', '5,10');
-$titleStr = JRequest::getVar('title','Demo Chart');
-$imageType = JRequest::getVar('imgtype','png');
-$chartWidth = JRequest::getVar('width',480);
-$chartHeight = JRequest::getVar('height',250);
+$chartType = JRequest::getVar('type');	
+$xStr = JRequest::getVar('xdata');	
+$yStr = JRequest::getVar('ydata');
+$titleStr = JRequest::getVar('title');
+$imageType = JRequest::getVar('imgtype');
+$chartWidth = JRequest::getVar('width');
+$chartHeight = JRequest::getVar('height');
 
 // If chart is a DB query, then query the database for the data
 if($chartType=='db') {
@@ -59,10 +59,8 @@ if($chartType=='db') {
 } else {
 	// If not a database query, use the REQUEST string data
 }
-$xStr = cChart::sampleData();
-
 // Render the chart with the current parameters
-cChart::renderBarChart($titleStr,$xStr,$yStr,$imageType,$chartWidth,$chartHeight); 
+cChart::renderBarChart($titleStr,$xStr,$yStr,$imageType,$chartWidth,$chartHeight);
 // Get a reference to the current JDocument object
 $document =& JFactory::getDocument();
 // Set the Mime type to match the chart header
