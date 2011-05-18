@@ -47,6 +47,9 @@ h3. SQL statements
 
 Query examples from chapter 9 and a PHP script to convert all Joomla tables from MyISAM to InnoDB.
 
+h3. Test scripts
+
+Testing scripts from chapter 10 for JMeter and Selenium that can be used to test your Joomla site.
 
 h1. Copyright
 

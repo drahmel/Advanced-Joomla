@@ -1,0 +1,50 @@
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">joomla_registration</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/joomlaadv/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Create an account</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name</td>
+	<td>John Test</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>username</td>
+	<td>javascript{&quot;j&quot;+Math.ceil(Math.random()*10000)+&quot;test&quot;}</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>email</td>
+	<td>javascript{&quot;t&quot;+Math.ceil(Math.random()*10000)+&quot;@example.com&quot;}</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>password</td>
+	<td>joomla</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>password2</td>
+	<td>joomla</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//button[@type='submit']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Your account has been created and an activation link has been sent to the e-mail address you entered.</td>
+	<td></td>
+</tr>
+</tbody></table>
