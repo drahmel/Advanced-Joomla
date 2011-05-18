@@ -21,13 +21,13 @@ if($outFormat!='raw') {
 require_once('cChart.php');
 
 // Get request parameters if they're available
-$chartType = JRequest::getVar('type');	
-$xStr = JRequest::getVar('xdata');	
-$yStr = JRequest::getVar('ydata');
-$titleStr = JRequest::getVar('title');
-$imageType = JRequest::getVar('imgtype');
-$chartWidth = JRequest::getVar('width');
-$chartHeight = JRequest::getVar('height');
+$chartType = JRequest::getVar('type','');	
+$xStr = JRequest::getVar('xdata','A,B');	
+$yStr = JRequest::getVar('ydata', '5,10');
+$titleStr = JRequest::getVar('title','Demo Chart');
+$imageType = JRequest::getVar('imgtype','png');
+$chartWidth = JRequest::getVar('width',480);
+$chartHeight = JRequest::getVar('height',250);
 
 // If chart is a DB query, then query the database for the data
 if($chartType=='db') {
@@ -59,6 +59,8 @@ if($chartType=='db') {
 } else {
 	// If not a database query, use the REQUEST string data
 }
+$xStr = cChart::sampleData();
+
 // Render the chart with the current parameters
 cChart::renderBarChart($titleStr,$xStr,$yStr,$imageType,$chartWidth,$chartHeight); 
 // Get a reference to the current JDocument object
