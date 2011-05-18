@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="module" version="1.5.0">
+     <name>Facebook Like</name>
+     <version>1.0.0</version>
+     <description>This module will displays a FB Like widget</description>
+     	<!-- This section is for Joomla 1.5 compatibility -->
+	<params>
+		<param name="facebook_page_id" type="text" default="" label="Facebook Page ID" 
+			description="The Page ID # of the FB page to link the Like widget." />
+	</params>
+     	<!-- This section is for Joomla 1.6 compatibility -->
+ 	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field
+					name="facebook_page_id"
+					type="text"
+					default=""
+					label="Facebook Page ID"
+					description="The Page ID # of the FB page to link the Like widget." />
+			</fieldset>
+		</fields>
+	</config>
+    <files>
+          <filename module="mod_facebook_like">mod_facebook_like.php</filename>
+     </files>
+</install>
