@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="module" version="1.5.0">
+     <name>Article Ajax</name>
+     <version>1.0.0</version>
+     <description>This module will display links to 5 current articles.<br/>
+          Each link has an onMouseOver event to activate an
+          Ajax routine to retrieve article information from
+          com_articleinfo.
+     </description>
+	<params>
+		<param name="count" type="text" default="10" label="Count" description="The number of items to display (default is 10)" />
+		<param name="@spacer" type="spacer" default="" label="" description="" />
+		<param name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="PARAMMODULECLASSSUFFIX" />
+	</params>
+     <files>
+          <filename module="mod_articleajax">mod_articleajax.php</filename>
+     </files>
+</install>
