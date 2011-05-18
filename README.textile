@@ -1,18 +1,20 @@
-1- What is this?
+h1. Advanced Joomla source code
+
+h2. What is this?
 
 * This is the source code for the Advanced Joomla! book by Dan Rahmel from APress 
-* http://www.amazon.com/Advanced-Joomla-Dan-Rahmel/dp/143021628X
-* Official site: http://www.joomlajumpstart.com
+* "Advanced Joomla book on Amazon":http://www.amazon.com/Advanced-Joomla-Dan-Rahmel/dp/143021628X
+* Official site: "Joomla Jumpstart at http://www.joomlajumpstart.com":http://www.joomlajumpstart.com
 
-2- What is Advanced Joomla!?
+h2. What is Advanced Joomla!?
 
-3- What is included in the source code?
+A book from APress that covers advanced template design (including mobile), extension creation, and full site configuration.
 
-h1. Extensions
+h2. What is included in the source code?
 
 A variety of extensions including:
 
-h2. Modules
+h3. Modules
 
 * mod_twitter -- Module that uses the Twitter API to search using Twitter keywords and display relevant tweets
 * mod_bingnews -- Modules that searches the Bing news API and displays relevant new items
@@ -20,13 +22,15 @@ h2. Modules
 * mod_store_locator -- Google Map module that displays store locations configured in the module administrator interface
 * mod_facebook_like -- Adds a Facebook Like button to specified pages
 
-h2. Components
+h3. Components
 	
 * com_article_historian
+* com_form_builder
+* com_ajax_request
 
-h2. Templates
+h3. Templates
 
-* aj_dynamic
+* aj_dynamic -- Completely dynamic Joomla template
 	
 
 Copyright:
