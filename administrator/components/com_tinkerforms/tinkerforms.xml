@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.5.0" type="component">
+     <name>TinkerForms</name>
+     <author>Dan Rahmel</author>
+     <version>1.0.0</version>
+     <description>Setup and configuration for display of Tinker Forms plugin.</description>
+     <administration>
+          <menu>TinkerForms</menu>
+         <files>
+              <filename component="tinkerforms">tinkerforms.php</filename>         
+         </files>
+         <sql>
+		CREATE TABLE `tinkerforms_forms` (
+		  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+		  `sql` text NOT NULL COMMENT 'SQL Statement for query',
+		  `json` text COMMENT 'JSON data describing display',
+		  `html` text COMMENT 'HTML output for override',
+		  `name` varchar(45) NOT NULL,
+		  `type` char(2) NOT NULL,
+		  `date_created` datetime NOT NULL,
+		  `date_modified` datetime NOT NULL,
+		  `archived` tinyint(1) NOT NULL,
+		  `published` tinyint(1) NOT NULL,
+		  PRIMARY KEY (`id`)
+		) ENGINE=InnoDB 
+         </sql>
+     </administration>
+
+</install>
