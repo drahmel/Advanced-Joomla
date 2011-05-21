@@ -4,22 +4,23 @@
 	<author>Dan Rahmel</author>
 	<creationDate>May 2011</creationDate>
 	<version>1.6.0</version>
+	<!-- link="index.php?option=com_articlestencil&task=display" -->
 	<description>Article Stencil component<br/>
 	</description>
 
 	<files folder="site">
 		<filename>articlestencil.php</filename>
+		<folder>views</folder>
 	</files>
 	<administration>
 		<menu>Article Stencil</menu>
 		<submenu>
-			<menu link="index.php?option=com_articlestencil&task=display" 
-				view="articlestencil" img="class:articlestencil"
-				alt="Article Stencil">
+			<menu  view="articlestencil" img="class:articlestencil" alt="Article Stencil">
 				Article Stencil
 			</menu>
 		</submenu>
-		<files folder="admin" />
+		<files folder="admin">
+			<filename>index.html</filename>
+		</files>
 	</administration>
 </extension>
-
