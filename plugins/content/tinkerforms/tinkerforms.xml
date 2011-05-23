@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<install version="1.5" type="plugin" group="content">
+	<name>Tinker Forms</name>
+	<author>Dan Rahmel</author>
+	<creationDate>July 2007</creationDate>
+	<authorEmail>admin@joomlajumpstart.com</authorEmail>
+	<authorUrl>www.joomlajumpstart.com</authorUrl>
+	<version>1.0</version>
+	<description>Provides form output queries.</description>
+	<files>
+		<filename plugin="tinkerforms">tinkerforms.php</filename>
+		<filename>cTinkerForms.php</filename>
+	</files>
+	<params>
+		<param name="search_limit" type="text" size="5" default="50" label="Search Limit" description="Number of search items to return"/>		
+	</params>
+</install>
+
+
