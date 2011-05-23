@@ -17,9 +17,9 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 /**
 * @package		Joomla
-* @subpackage	Tinkerformss
+* @subpackage	Tinkerforms tinkerformsViewtinkerforms TinkerFormsViewTinkerforms
 */
-class TinkerFormsViewtinkerforms
+class tinkerformsViewtinkerforms
 {
 	function setTinkerFormsToolbar()
 	{

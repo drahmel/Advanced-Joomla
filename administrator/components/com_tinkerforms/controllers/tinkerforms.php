@@ -18,8 +18,8 @@ class TinkerFormsControllertinkerforms extends JController {
 	function __construct( $config = array() ) {
 		parent::__construct( $config );
 		// Register Extra tasks
-		$this->registerTask( 'add',			'edit' );
-		$this->registerTask( 'apply',		'save' );
+		$this->registerTask( 'add', 'edit' );
+		$this->registerTask( 'apply', 'save' );
 		$this->registerTask( 'resethits',	'save' );
 		$this->registerTask( 'unpublish',	'publish' );
 	}
@@ -27,7 +27,7 @@ class TinkerFormsControllertinkerforms extends JController {
 	// Record data received from form posting
 	function save()  {
 		// Set title in Administrator interface      
-		JToolBarHelper::title( JText::_( 'Update Guestbook Entry' ), 'addedit.png' );
+		JToolBarHelper::title( JText::_( 'Update Tinker Form Entry' ), 'addedit.png' );
 		
 		// Get reference to database object
 		$db =& JFactory::getDBO();
@@ -130,6 +130,9 @@ class TinkerFormsControllertinkerforms extends JController {
 	     }
 	     echo "</table>";
 	     echo "<h3>Click on an entry link in the table to edit entry.</h3>";
+	     parent::display();
+
+		return $this;
 	}
 	
 	function edit() {
