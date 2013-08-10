@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="module" version="1.5.0">
+     <name>Flickr</name>
+     <version>1.0.0</version>
+     <description>This module will performs a Flickr search and displays one or more images</description>
+        <!-- This section is for Joomla 1.5 compatibility -->
+    <params>
+        <param name="flickr_api_key" type="text" 
+            default="" label="Flickr API key" 
+            description=
+            "The API key that allows Flickr searches." 
+        />
+        <param name="cache_expire" type="int" 
+            default="4" label="Cache expire (hours)" 
+            description="Number of hours to cache results." 
+        />
+        <param name="num_items" type="int" 
+            default="3" label="# of items" 
+            description="Number of news items to display"
+        />
+        <param name="shuffle" type="int" 
+            default="1" label="Shuffle" 
+            description="Shuffle item results" 
+        />
+        <param name="width" type="int" 
+            default="400" label="Width" 
+            description="Width of containing DIV" 
+        />
+        <param name="height" type="int" 
+            default="300" label="Height" 
+            description="Height of containing DIV" 
+        />
+        <param name="border" type="int" 
+            default="1" label="Border pixels" 
+            description="Number of pixels for gray border" 
+        />
+    </params>
+        <!-- This section is for Joomla 1.6 compatibility -->
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field
+                    name="flickr_api_key"
+                    type="text"
+                    default=""
+                    label="Flickr API key"
+                    description=
+                    "The API key that allows Flickr searches." />
+                <field 
+                    name="cache_expire"
+                    type="int"
+                    default="24"
+                    label="Cache expire (hours)"
+                    description="Number of hours to cache results. Set to 0 to disable module." />
+                <field 
+                    name="num_items"
+                    type="int"
+                    default="2"
+                    label="# of items"
+                    description="Number of news items to display" />
+                <field 
+                    name="shuffle"
+                    type="int"
+                    default="1"
+                    label="Shuffle"
+                    description="Shuffle item results" />
+                <field 
+                    name="width"
+                    type="int"
+                    default="400"
+                    label="Width"
+                    description="Width of containing DIV" />
+                <field 
+                    name="height"
+                    type="int"
+                    default="300"
+                    label="Height"
+                    description="Height of containing DIV" />
+                <field 
+                    name="border"
+                    type="int"
+                    default="1"
+                    label="Border pixels"
+                    description="Number of pixels for gray border" />
+            </fieldset>
+        </fields>
+    </config>
+    <files>
+          <filename module="mod_flickr">mod_flickr.php</filename>
+     </files>
+</install>
+
