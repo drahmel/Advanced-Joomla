@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="2.5.0">
+    <name>Article Stencil</name>
+    <creationDate>March 2013</creationDate>
+    <author>Dan Rahmel</author>
+    <authorUrl>http://www.joomlajumpstart.com</authorUrl>
+    <version>0.1.0</version>
+    <description>Component that allows fast article creation 
+    for blog entries and article placeholders. 
+    </description>
+    
+    <files>
+        <filename>articlestencil.php</filename>
+        <filename>articlestencil.xml</filename>
+        <filename>index.html</filename>
+        <folder>models</folder>
+        <folder>views</folder>
+    </files>
+    <administration>
+    <!-- Administration Menu Section -->
+        <menu>Article Injector</menu>
+        <files>
+            <filename>index.html</filename>
+        </files>
+    </administration>
+    <media destination="com_articleinjector" folder="media">
+        <filename>index.html</filename>
+    </media>
+</extension>
