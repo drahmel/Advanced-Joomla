@@ -1,0 +1,28 @@
+#toolbar {
+	width: 256px;
+	height: 64px;
+	background: url(../images/button_sprite.png);
+	margin: 10px auto; 
+	padding: 0;
+	position: relative;
+}
+#toolbar li {
+	margin: 0; padding: 0; list-style: none;
+	position: absolute; top: 0;
+}
+#toolbar li, #toolbar a { 
+	height: 64px; display: block;
+}
+#btnOpen {left: 0; width: 256px;}
+#btnClose {left: 256px; width: 256px;}
+
+#btnOpen a:hover {
+	background: transparent url(button_sprite.png)
+		-256px 0 no-repeat;
+}
+#btnClose a:hover {
+	background: transparent url(button_sprite.png)
+		-96px -200px no-repeat;
+}
+    
+

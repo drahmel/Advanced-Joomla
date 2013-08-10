@@ -1,0 +1,5 @@
+<field name="mediaVersion"  type="text" default="white"
+        label="Version number for media files"
+        description="Change this value to flush caches of CSS and JS files"
+        filter="string" />
+

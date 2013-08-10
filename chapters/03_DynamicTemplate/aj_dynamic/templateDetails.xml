@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE install PUBLIC "-//Joomla! 2.5//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/1.6/template-install.dtd">
+<extension version="2.5" type="template" client="site">
+	<name>aj_dynamic</name>
+	<creationDate>25 September 2012</creationDate>
+	<author>Dan Rahmel</author>
+	<authorEmail>drahmel@joomlajumpstart.com</authorEmail>
+	<authorUrl>http://www.joomlajumpstart.com</authorUrl>
+	<copyright>Copyright (C) 2012 - 2013 Dan Rahmel. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<version>2.5.0</version>
+	<description>Responsive template created in the book Advanced Joomla!</description>
+
+	<files>
+		<filename>index.php</filename>
+		<filename>templateDetails.xml</filename>
+	</files>
+
+	<positions>
+		<position>debug</position>
+		<position>position-0</position>
+		<position>position-1</position>
+		<position>position-2</position>
+		<position>position-3</position>
+		<position>position-4</position>
+		<position>position-5</position>
+		<position>position-6</position>
+		<position>position-7</position>
+		<position>position-8</position>
+		<position>position-9</position>
+		<position>position-10</position>
+		<position>position-11</position>
+		<position>position-12</position>
+		<position>position-13</position>
+		<position>position-14</position>
+	</positions>
+
+	<config>
+		<fields name="params">
+			<fieldset name="advanced">
+				<field name="include_jquery" type="radio" default="1" label="Include jQuery" description="Inject jQuery library reference into head section">
+				  <option value="1">Yes</option>
+				  <option value="0">No</option>
+				</field>
+
+				<field name="background_color"  type="text" default="white"
+					label="Background color"
+					description="Set the background color of the body tag"
+					filter="string" />
+			</fieldset>
+		</fields>
+	</config>
+</extension>

@@ -1,0 +1,39 @@
+<script type="text/javascript">
+function orientationChange() {
+    switch(window.orientation) {
+        // Portrait
+        case 0:
+        case 180:
+            $('.portrait').each(function(element, i) { 
+            	element.setStyle('display',''); 
+            });         
+            $('.landscape').each(function(element, i) { 
+            	element.setStyle('display','none'); 
+            });            
+            break;  
+        
+        // Landscape
+       case undefined:
+       case 90:
+       case -90:   
+            $('.portrait').each(function(element, i) { 
+            	element.setStyle('display','none'); 
+            });         
+            $('.landscape').each(function(element, i) { 
+            	element.setStyle('display',''); 
+            });            
+            break;
+    }
+}
+$(document).ready(function(){
+	window.onorientationchange=orientationChange;
+	orientationChange();
+});
+</script>
+</head>
+<body>
+<div id="items">
+	<div class="portrait">Portrait banner</div>
+	<div class="landscape">Landscape banner</div>	
+</div>
+
