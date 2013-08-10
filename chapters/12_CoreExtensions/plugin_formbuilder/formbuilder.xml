@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="content">
+	<name>Content - Form Builder plugin</name>
+	<author>Dan Rahmel</author>
+	<creationDate>July 2013</creationDate>
+	<authorEmail>admin@joomlajumpstart.com</authorEmail>
+	<authorUrl>www.joomlajumpstart.com</authorUrl>
+	<version>1.0</version>
+	<description>Provides form output queries.</description>
+	<files>
+		<filename plugin="formbuilder">formbuilder.php</filename>
+		<filename>cFormBuilder.php</filename>
+	</files>
+</extension>
+
+

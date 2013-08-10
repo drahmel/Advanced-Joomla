@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="1.6.0" method="upgrade">
+	<name>Article Historian</name>
+	<author>Dan Rahmel</author>
+	<creationDate>May 2010</creationDate>
+	<version>1.0.0</version>
+	<description>Article Historian will allow past versions of articles to be examined and restored.</description>
+
+	<files>
+		<filename>articlehistorian.php</filename>
+		<filename>articlehistorian.xml</filename>
+	</files>
+	<administration>
+		<menu>Article Historian</menu>
+	</administration>
+</extension>
