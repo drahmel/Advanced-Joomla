@@ -1,0 +1,6 @@
+# Reference an article through the content component
+index.php?option=com_content&view=article&id=1
+# Reference an article using the display settings of the menu with an id of 3
+index.php?option=com_content&view=article&id=1&Itemid=3
+# Reference an article using the display settings of the menu with an id of 4
+index.php?option=com_content&view=article&id=1&Itemid=4
