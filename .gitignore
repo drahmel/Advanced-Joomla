@@ -1,3 +1,4 @@
+# List of ignores for Joomla checkout
 tmp/
 modules/mod_banners/
 modules/mod_breadcrumbs/
