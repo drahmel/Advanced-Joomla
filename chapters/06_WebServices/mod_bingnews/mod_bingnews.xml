@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="1.5.0">
+     <name>Bing News</name>
+     <version>1.0.0</version>
+     <description>This module will performs a Bing News search and displays the results</description>
+        <!-- This section is for Joomla 1.5 compatibility -->
+    <params>
+        <param name="bing_api_key" type="text" 
+            default="" label="Bing API ID" 
+            description="Register on the Bing API site and enter the API key here." />
+        <param name="cache_expire" type="int" 
+            default="4" label="Cache expire (hours)" 
+            description="Number of hours to cache results." />
+        <param name="num_items" type="int" 
+            default="3" label="# of items" 
+            description="Number of news items to display" />
+        <param name="shuffle" type="int" 
+            default="1" label="Shuffle" 
+            description="Shuffle item results" />
+    </params>
+        <!-- This section is for Joomla 1.6 compatibility -->
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field
+                    name="bing_api_key"
+                    type="text"
+                    default=""
+                    label="Bing API ID"
+                    description=
+                    "Register on the Bing API site and enter the API key here." 
+                />
+                <field 
+                    name="cache_expire"
+                    type="int"
+                    default="4"
+                    label="Cache expire (hours)"
+                    description="Number of hours to cache results. 
+                        Set to 0 to disable module." />
+                <field 
+                    name="num_items"
+                    type="int"
+                    default="3"
+                    label="# of items"
+                    description="Number of news items to display" />
+                <field 
+                    name="shuffle"
+                    type="int"
+                    default="1"
+                    label="Shuffle"
+                    description="Shuffle item results" />
+            </fieldset>
+        </fields>
+    </config>
+    <files>
+          <filename module="mod_bingnews">mod_bingnews.php</filename>
+     </files>
+</extension>
+
