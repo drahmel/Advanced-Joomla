@@ -1,0 +1,53 @@
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">joomla_registration</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/joomlaadv/</td>
+	<td></td>
+</tr>
+<tr>
+    <td>type</td>
+	<td>id=jform_name</td>
+	<td>lover</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>javascript{Math.ceil(Math.random()*10000)}</td>
+	<td>myrand</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=jform_username</td>
+	<td>${myrand}</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=jform_password1</td>
+	<td>lover1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=jform_password2</td>
+	<td>lover1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=jform_email1</td>
+	<td>${myrand}@sogetthis.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=jform_email2</td>
+	<td>${myrand}@sogetthis.com</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=button.validate</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

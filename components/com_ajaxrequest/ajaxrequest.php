@@ -1,7 +1,7 @@
 <?php
 /**
-* @version $Id: com_articleinfo.php 5203 2007-07-27 01:45:14Z DanR $
-* This component will process a request parameter articlenum'
+* @version $Id: com_articleinfo.php 5203 2013-08-10 01:45:14Z DanR $
+* This component will process a request parameter articlenum
 * to query the article database and return the title and
 * article text in XML format.
 * 
