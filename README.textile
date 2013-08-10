@@ -14,6 +14,8 @@ A book from APress that covers advanced template design (including mobile), exte
 
 h2. What is included in the source code?
 
+All of the example code from the book organized by chapter and also by type (components, modules, etc.)
+
 A variety of extensions including:
 
 h3. Modules
