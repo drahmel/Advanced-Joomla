@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="2.5.0">
+     <name>Open Graph tags</name>
+     <author>Dan Rahmel</author>
+     <creationDate>January 2013</creationDate>
+     <copyright>(C) 2013 Dan Rahmel. All rights reserved.</copyright>
+     <authorEmail>admin@joomlajumpstart.com</authorEmail>
+     <authorUrl>www.joomlajumpstart.com</authorUrl>
+     <version>1.0.0</version>
+     <description>Facebook Open Graph tags module</description>
+     <files>
+          <filename module="mod_ogtags">mod_ogtags.php</filename>
+     </files>
+     <config>
+        <fields name="params">
+          <fieldset name="basic">
+              <field name="app_id" type="text" />
+              <field name="admin_id" type="text" />
+              <field name="page_id" type="text" />
+          </fieldset>
+        </fields>
+     </config>
+</extension>
