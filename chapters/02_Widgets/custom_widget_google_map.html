@@ -1,0 +1,28 @@
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map_canvas { height: 100% }
+    </style>
+    <script type="text/javascript">
+function init () {
+  var mapOptions = {
+    zoom: 15,
+    center: new google.maps.LatLng(37.3308525, -122.0296837),
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  }
+  var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+}
+
+function load_map() {
+  var script = document.createElement("script");
+  script.type = "text/javascript";
+  script.src = "http://maps.googleapis.com/maps/api/js?key=APIKEY&sensor=false&callback=initialize";
+  document.body.appendChild(script);
+}
+
+window.onload = load_map;
+    </script>
+  </head>
+    <div id="map_canvas" style="border:2px solid red;min-height:300px;width:100%; height:100%"></div>
+
