@@ -1,0 +1,3 @@
+git reflog	# Shows your most recent actions such as switching between branchs (with the branch names)
+git diff master...HEAD	# Shows the changes made in the current branch that are different from the master
+git branch mytemp;git reset --hard HEAD~	# Put the last commit on a temporary branch and then removes it from the current branch commit path 
