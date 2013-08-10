@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="2.5.0">
+	<name>Article Injector</name>
+	<creationDate>November 2012</creationDate>
+	<author>Dan Rahmel</author>
+	<authorUrl>http://www.joomlajumpstart.com</authorUrl>
+	<version>0.1.0</version>
+	<description>Component that allows fast article creation for blog entries and article placeholders. 
+	You can access it on your site at the URL: /index.php?option=com_articleinjector&view=categories
+	</description>
+	
+	<files>
+		<filename>index.html</filename>
+		<filename>articleinjector.php</filename>
+		<filename>articleinjector_view.php</filename>
+		<folder>js</folder>
+	</files>
+	<administration>
+	<!-- Administration Menu Section -->
+		<menu>Article Injector</menu>
+		<files>
+			<filename>index.html</filename>
+		</files>
+	</administration>
+	<media destination="com_articleinjector" folder="media">
+		<filename>index.html</filename>
+	</media>
+</extension>

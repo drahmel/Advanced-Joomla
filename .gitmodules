@@ -1,3 +1,21 @@
 [submodule "chapters/07_SecurityAdmin/jquery-cookie"]
 	path = chapters/07_SecurityAdmin/jquery-cookie
 	url = https://github.com/carhartl/jquery-cookie
+[submodule "chapters/05_JavaScriptAjax/mvc_js_angular"]
+	path = chapters/05_JavaScriptAjax/mvc_js_angular
+	url = https://github.com/angular/angular.js
+[submodule "chapters/05_JavaScriptAjax/mvc_js_ember"]
+	path = chapters/05_JavaScriptAjax/mvc_js_ember
+	url = https://github.com/emberjs/ember.js
+[submodule "chapters/05_JavaScriptAjax/knockout_js"]
+	path = chapters/05_JavaScriptAjax/knockout_js
+	url = https://github.com/knockout/knockout
+[submodule "chapters/05_JavaScriptAjax/mvc_js_backbone"]
+	path = chapters/05_JavaScriptAjax/mvc_js_backbone
+	url = https://github.com/jashkenas/backbone
+[submodule "chapters/05_JavaScriptAjax/mvc_js_agility"]
+	path = chapters/05_JavaScriptAjax/mvc_js_agility
+	url = https://github.com/arturadib/agility
+[submodule "chapters/05_JavaScriptAjax/jquery_image_lazyload"]
+	path = chapters/05_JavaScriptAjax/jquery_image_lazyload
+	url = https://github.com/tuupola/jquery_lazyload
