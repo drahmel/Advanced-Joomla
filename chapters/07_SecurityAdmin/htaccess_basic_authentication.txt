@@ -1,0 +1,6 @@
+AuthType Basic
+AuthName Please enter your password:"
+<Limit GET,POST>
+require valid-user
+</Limit>
+

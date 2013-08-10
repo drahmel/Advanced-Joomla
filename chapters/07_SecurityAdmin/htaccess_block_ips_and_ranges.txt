@@ -1,0 +1,8 @@
+<Limit GET POST>
+order deny,allow
+deny from 192.168.1.0/8 # Works the same as wildcard 192.168.1.*
+deny from 192.168.1.0/16 # Works the same as wildcard 192.168.*.*
+allow from 192.168.1.113 # Allow from one IP in the denied range
+deny from example.com # Denies accesses from the example.com domain
+</Limit>
+

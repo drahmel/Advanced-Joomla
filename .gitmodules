@@ -1,0 +1,3 @@
+[submodule "chapters/07_SecurityAdmin/jquery-cookie"]
+	path = chapters/07_SecurityAdmin/jquery-cookie
+	url = https://github.com/carhartl/jquery-cookie
