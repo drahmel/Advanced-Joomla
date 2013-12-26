@@ -124,7 +124,8 @@ $menu_view = $app->getMenu()->getActive()->query['view'];
 			color:white;
 		}
 		</style>
-		<div class="container-fluid">
+		<div id="bodydiv" class="container-fluid">
+			<?php if(!empty($_GET['guide'])): ?>
 			<div class="row-fluid">
 				<div class="span1 color">1</div>
 				<div class="span1 color">2</div>
@@ -139,13 +140,12 @@ $menu_view = $app->getMenu()->getActive()->query['view'];
 				<div class="span1 color">11</div>
 				<div class="span1 color">12</div>
 			</div>
-			    <div class="row-fluid">
+			<div class="row-fluid">
 				<div class="span3 color">left</div>
 				<div class="span6 color">center</div>
 				<div class="span3 color">right</div>
-			    </div>		
 			</div>
-		<div id="bodydiv" class="container-fluid">
+			<?php endif; ?>
 			<div class="row-fluid">
 				<?php if($this->countModules('atomic-search') or $this->countModules('position-0')) : ?>
 				<div class="span9">
