@@ -65,3 +65,6 @@ libraries/phputf8/
 libraries/simplepie/
 web.config.txt
 plugins/
+
+.DS_Store
+*~
