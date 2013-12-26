@@ -58,7 +58,7 @@ $menu_view = $app->getMenu()->getActive()->query['view'];
 
 		<!-- Load minimized Twitter Bootstrap styles -->
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" type="text/css" />
-		<!--   link rel="stylesheet" href="<?php echo $template_path; ?>/css/bootstrap.min.css" type="text/css" />
+		<!-- link rel="stylesheet" href="<?php echo $template_path; ?>/css/bootstrap.min.css" type="text/css" />
 		<link rel="stylesheet" href="<?php echo $template_path; ?>/css/bootstrap-responsive.min.css" type="text/css" / -->
 	
 		<!-- Load custom font from Google fonts -->
