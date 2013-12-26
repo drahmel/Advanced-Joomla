@@ -49,7 +49,7 @@ favicon.ico
 htaccess.txt
 images/
 includes/
-index.php
+/index.php
 joomla.xml
 language/
 logs/
