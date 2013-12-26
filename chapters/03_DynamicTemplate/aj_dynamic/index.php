@@ -1,4 +1,3 @@
-
 <?php
 /**
  * @revision		$Revision: 9749 $
@@ -38,6 +37,26 @@ $template_path = $base_url."templates".DS.$this->template;
 $menu_view = $app->getMenu()->getActive()->query['view'];
 
 // echo htmlspecialchars($app->getCfg('sitename'));
+
+// With so many different template position standards, we'll create an array here of
+// all of the possible position names from the template configuration
+
+// Navigation that runs the width of the window
+$temp = $this->params->get('fullnav');
+$fullNav = explode(',', !empty($temp)	?	$temp	:	'banner,fullnav');
+
+$temp = $this->params->get('leftcol');
+$leftCol = explode(',', !empty($temp)	?	$temp	:	'leftcol,leftslab,position-8,position-4,position-5,login,atomic-sidebar');
+
+$temp = $this->params->get('centernav');
+$centerNav = explode(',', !empty($temp)	?	$temp	:	'centernav,position-0,position-1');
+
+$temp = $this->params->get('centercol');
+$centerCol = explode(',', !empty($temp)	?	$temp	:	'centercol-top,position-3,MESSAGE,COMPONENT,centercol-bottom,position-2');
+
+$temp = $this->params->get('rightcol');
+$rightCol = explode(',', !empty($temp)	?	$temp	:	'position-7,rightcol');
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -126,25 +145,25 @@ $menu_view = $app->getMenu()->getActive()->query['view'];
 		</style>
 		<div id="bodydiv" class="container-fluid">
 			<?php if(!empty($_GET['guide'])): ?>
-			<div class="row-fluid">
-				<div class="span1 color">1</div>
-				<div class="span1 color">2</div>
-				<div class="span1 color">3</div>
-				<div class="span1 color">4</div>
-				<div class="span1 color">5</div>
-				<div class="span1 color">6</div>
-				<div class="span1 color">7</div>
-				<div class="span1 color">8</div>
-				<div class="span1 color">9</div>
-				<div class="span1 color">10</div>
-				<div class="span1 color">11</div>
-				<div class="span1 color">12</div>
-			</div>
-			<div class="row-fluid">
-				<div class="span3 color">left</div>
-				<div class="span6 color">center</div>
-				<div class="span3 color">right</div>
-			</div>
+				<div class="row-fluid">
+					<div class="span1 color">1</div>
+					<div class="span1 color">2</div>
+					<div class="span1 color">3</div>
+					<div class="span1 color">4</div>
+					<div class="span1 color">5</div>
+					<div class="span1 color">6</div>
+					<div class="span1 color">7</div>
+					<div class="span1 color">8</div>
+					<div class="span1 color">9</div>
+					<div class="span1 color">10</div>
+					<div class="span1 color">11</div>
+					<div class="span1 color">12</div>
+				</div>
+				<div class="row-fluid">
+					<div class="span3 color">left</div>
+					<div class="span6 color">center</div>
+					<div class="span3 color">right</div>
+				</div>
 			<?php endif; ?>
 			<div class="row-fluid">
 				<?php if($this->countModules('atomic-search') or $this->countModules('position-0')) : ?>
@@ -157,27 +176,26 @@ $menu_view = $app->getMenu()->getActive()->query['view'];
 			</div>
 			<?php if($this->countModules('atomic-topmenu') or $this->countModules('position-2') ) : ?>
 			<div class="row-fluid">
-				<div class="span12">
-					<jdoc:include type="modules" name="atomic-topmenu" style="container" class="nav" />
-					<jdoc:include type="modules" name="position-1" style="container" />
-				</div>
 			</div>
 			<?php endif; ?>
 			<div class="row-fluid">
-				<div id="leftslab" class="span2">
+				<div id="leftslab" class="span3">
+					<jdoc:include type="modules" name="atomic-sidebar" style="sidebar" />
+					<jdoc:include type="modules" name="position-8" style="beezDivision" headerLevel="3" />
+					<jdoc:include type="modules" name="position-4" style="sidebar" />
+					<jdoc:include type="modules" name="position-5" style="sidebar" />
+					<jdoc:include type="modules" name="login" />
+				</div>
+				<div id="centerslab" class="span6">
+					<div class="span12">
+						<jdoc:include type="modules" name="atomic-topmenu" style="container" class="nav" />
+						<jdoc:include type="modules" name="position-1" style="container" />
+					</div>
+					<jdoc:include type="modules" name="position-6" style="sidebar" />
+					<jdoc:include type="modules" name="position-3" style="sidebar" />
 					<div id="breadcrumbs">
 						<jdoc:include type="modules" name="position-2" />
 					</div>
-					<jdoc:include type="modules" name="atomic-sidebar" style="sidebar" />
-					<jdoc:include type="modules" name="position-7" style="beezDivision" headerLevel="3" />
-					<jdoc:include type="modules" name="position-4" style="sidebar" />
-					<jdoc:include type="modules" name="position-5" style="sidebar" />
-					<jdoc:include type="modules" name="position-6" style="sidebar" />
-					<jdoc:include type="modules" name="position-8" style="sidebar" />
-					<jdoc:include type="modules" name="position-3" style="sidebar" />
-					<jdoc:include type="modules" name="login" />
-				</div>
-				<div id="centerslab" class="span9">
 					<div id="headerholder">
 						
 						<?php 
@@ -199,8 +217,8 @@ $menu_view = $app->getMenu()->getActive()->query['view'];
 						</div><!--end contentarea-->
 					</div>
 				</div><!--end centerslab-->
-				<div id="rightslab" class="span1">
-					RIGHT
+				<div id="rightslab" class="span3">
+					<jdoc:include type="modules" name="position-7" style="sidebar" />
 				</div>
 			</div>
 		</div><!--end bodydiv-->
