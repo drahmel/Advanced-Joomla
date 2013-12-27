@@ -58,6 +58,9 @@ $panels['centerCol'] = explode(',', !empty($temp)	?	$temp	:	'centercol-top,posit
 $temp = $this->params->get('rightcol');
 $panels['rightCol'] = explode(',', !empty($temp)	?	$temp	:	'position-7,rightcol');
 
+$temp = $this->params->get('bottom');
+$panels['bottom'] = explode(',', !empty($temp)	?	$temp	:	'shared,preloadimages,dev,debug');
+
 foreach($panels as $panelKey => $panel) {
 	foreach($panel as $positionKey => $position) {
 		$position = trim($position);
@@ -68,16 +71,11 @@ foreach($panels as $panelKey => $panel) {
 }
 //print_r($panels);
 $centerSpan = 12;
-$leftClass = "hideCol";
-$rightClass = "hideCol";
-
 if(!empty($panels['leftCol'])) {
 	$centerSpan -= 3;
-	$leftClass = "span3";
 }
 if(!empty($panels['rightCol'])) {
 	$centerSpan -= 3;
-	$rightClass = "span3";
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -205,7 +203,7 @@ if(!empty($panels['rightCol'])) {
 			<?php endif; ?>
 			<div class="row-fluid">
 				<?php if(!empty($panels['leftCol'])): ?>
-					<div id="leftslab" class="<?php echo $leftClass ?>">
+					<div id="leftslab" class="span3">
 						<?php foreach($panels['leftCol'] as $leftPosition): ?>
 							<jdoc:include type="modules" name="<?php echo $leftPosition ?>" style="sidebar" />
 						<?php endforeach; ?>
@@ -242,11 +240,13 @@ if(!empty($panels['rightCol'])) {
 						</div><!--end contentarea-->
 					</div>
 				</div><!--end centerslab-->
-				<div id="rightslab" class="<?php echo $rightClass ?>">
-					<?php foreach($panels['rightCol'] as $rightPosition): ?>
-						<jdoc:include type="modules" name="<?php echo $rightPosition ?>" style="sidebar" />
-					<?php endforeach; ?>
-				</div>
+				<?php if(!empty($panels['rightCol'])): ?>
+					<div id="rightslab" class="span3">
+						<?php foreach($panels['rightCol'] as $rightPosition): ?>
+							<jdoc:include type="modules" name="<?php echo $rightPosition ?>" style="sidebar" />
+						<?php endforeach; ?>
+					</div>
+				<?php endif; ?>
 			</div>
 		</div><!--end bodydiv-->
 		<div id="footerholder">
@@ -276,18 +276,11 @@ if(!empty($panels['rightCol'])) {
 			
 	</div>
 			
-	<div id="debug">
-		<jdoc:include type="modules" name="debug" />
-	</div>
-	<div id="dev">
-		<jdoc:include type="modules" name="dev" />
-	</div>
-	<div id="preload">
-		<jdoc:include type="modules" name="preloadimages" />
-	</div>
-	<div id="shared">
-		<jdoc:include type="modules" name="shared" />
-	</div>
+	<?php foreach($panels['bottom'] as $curPosition): ?>
+		<div id="<?php echo $curPosition ?>">
+			<jdoc:include type="modules" name="<?php echo $curPosition ?>" style="sidebar" />
+		</div>
+	<?php endforeach; ?>
 </div>
 </body>
 
