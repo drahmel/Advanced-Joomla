@@ -243,7 +243,7 @@ if(!empty($panels['rightCol'])) {
 				<?php if(!empty($panels['rightCol'])): ?>
 					<div id="rightslab" class="span3">
 						<?php foreach($panels['rightCol'] as $rightPosition): ?>
-							<jdoc:include type="modules" name="<?php echo $rightPosition ?>" style="sidebar" />
+							<jdoc:include type="modules" name="<?php echo $rightPosition ?>" style="border" />
 						<?php endforeach; ?>
 					</div>
 				<?php endif; ?>
