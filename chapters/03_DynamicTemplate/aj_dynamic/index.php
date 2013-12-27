@@ -49,10 +49,10 @@ $temp = $this->params->get('leftcol');
 $leftCol = explode(',', !empty($temp)	?	$temp	:	'leftcol,leftslab,position-8,position-4,position-5,login,atomic-sidebar');
 
 $temp = $this->params->get('centernav');
-$centerNav = explode(',', !empty($temp)	?	$temp	:	'centernav,position-0,position-1');
+$centerNav = explode(',', !empty($temp)	?	$temp	:	'centernav,breadcrumbs,position-0,position-1,position-6,atomic-topmenu');
 
 $temp = $this->params->get('centercol');
-$centerCol = explode(',', !empty($temp)	?	$temp	:	'centercol-top,position-3,MESSAGE,COMPONENT,centercol-bottom,position-2');
+$centerCol = explode(',', !empty($temp)	?	$temp	:	'centercol-top,position-3,MESSAGE,COMPONENT,centercol-bottom');
 
 $temp = $this->params->get('rightcol');
 $rightCol = explode(',', !empty($temp)	?	$temp	:	'position-7,rightcol');
@@ -180,19 +180,16 @@ $rightCol = explode(',', !empty($temp)	?	$temp	:	'position-7,rightcol');
 			<?php endif; ?>
 			<div class="row-fluid">
 				<div id="leftslab" class="span3">
-					<jdoc:include type="modules" name="atomic-sidebar" style="sidebar" />
-					<jdoc:include type="modules" name="position-8" style="beezDivision" headerLevel="3" />
-					<jdoc:include type="modules" name="position-4" style="sidebar" />
-					<jdoc:include type="modules" name="position-5" style="sidebar" />
-					<jdoc:include type="modules" name="login" />
+					<?php foreach($leftCol as $leftPosition): ?>
+						<jdoc:include type="modules" name="<?php echo $leftPosition ?>" style="sidebar" />
+					<?php endforeach; ?>
 				</div>
 				<div id="centerslab" class="span6">
 					<div class="span12">
-						<jdoc:include type="modules" name="atomic-topmenu" style="container" class="nav" />
-						<jdoc:include type="modules" name="position-1" style="container" />
+						<?php foreach($centerNav as $centerNavPosition): ?>
+							<jdoc:include type="modules" name="<?php echo $centerNavPosition ?>" style="sidebar" />
+						<?php endforeach; ?>
 					</div>
-					<jdoc:include type="modules" name="position-6" style="sidebar" />
-					<jdoc:include type="modules" name="position-3" style="sidebar" />
 					<div id="breadcrumbs">
 						<jdoc:include type="modules" name="position-2" />
 					</div>
@@ -207,6 +204,9 @@ $rightCol = explode(',', !empty($temp)	?	$temp	:	'position-7,rightcol');
 					</div><!--end headerholder-->
 					
 					
+					<?php foreach($centerCol as $centerPosition): ?>
+						<jdoc:include type="modules" name="<?php echo $centerPosition ?>" style="sidebar" />
+					<?php endforeach; ?>
 					<div id="contentholder">
 						<div id="contentarea">
 							<div id="textcontent">
