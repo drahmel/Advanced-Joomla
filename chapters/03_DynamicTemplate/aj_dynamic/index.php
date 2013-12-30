@@ -1,6 +1,6 @@
 <?php
 /**
- * @revision		$Revision: 9749 $
+ * @revision		$Revision: 9908 $
  * @package		aj_dynamic
  * @author		Dan Rahmel
  * @site		www.joomlajumpstart.com
@@ -32,7 +32,9 @@ $this->direction = $doc->direction;
 // Template setup code
 $user = JFactory::getUser();
 $app = JFactory::getApplication();
+$sitename = $app->getCfg('sitename');
 $base_url = JURI::base();
+
 $template_path = $base_url."templates".DS.$this->template;
 $menu_view = $app->getMenu()->getActive()->query['view'];
 
@@ -77,6 +79,21 @@ if(!empty($panels['leftCol'])) {
 if(!empty($panels['rightCol'])) {
 	$centerSpan -= 3;
 }
+
+// Logo file or site title param
+if ($this->params->get('logoFile'))
+{
+	$logo = '<img src="'. JUri::root() . $this->params->get('logoFile') .'" alt="'. $sitename .'" />';
+}
+elseif ($this->params->get('sitetitle'))
+{
+	$logo = '<span class="site-title" title="'. $sitename .'">'. htmlspecialchars($this->params->get('sitetitle')) .'</span>';
+}
+else
+{
+	$logo = '<span class="site-title" title="'. $sitename .'">'. $sitename .'</span>';
+}
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -138,6 +155,32 @@ if(!empty($panels['rightCol'])) {
 		.hideCol {
 			display: none;
 		}
+		#banner {
+			padding: 8px 16px;
+			background-color: darkblue;
+			background-color: #142849;
+			background-image: -webkit-gradient(radial,center center,0,center center,460,from(#165387),to(#142849));
+			background-image: -webkit-radial-gradient(circle,#165387,#142849);
+			background-image: -moz-radial-gradient(circle,#165387,#142849);
+			background-image: -o-radial-gradient(circle,#165387,#142849);
+			background-repeat: no-repeat;
+		}
+		#banner a, #banner a:hover {
+			text-shadow: 0px -2px 0px #333, 0px 2px 3px #666;
+			text-transform: uppercase;
+			font-size: 60px;
+			line-height: 64px;
+			font-weight: 800;
+			color:aliceblue;
+			text-decoration: none;
+		}
+		#banner-subtitle {
+			text-transform: lowercase;
+			font-size: 18px;
+			line-height: 22px;
+			color:white;
+			text-decoration: none;
+		}
 		</style>
 	
 		
@@ -166,6 +209,13 @@ if(!empty($panels['rightCol'])) {
 			color:white;
 		}
 		</style>
+			<!-- Header -->
+			<header class="header" role="banner" id="banner">
+					<a href="<?php echo $this->baseurl; ?>">
+						<?php echo $logo;?> <?php if ($this->params->get('sitedescription')) { echo '<div id="banner-subtitle">'. htmlspecialchars($this->params->get('sitedescription')) .'</div>'; } ?>
+					</a>
+				</div>
+			</header>
 		<div id="bodydiv" class="container-fluid">
 			<?php if(!empty($_GET['guide'])): ?>
 				<div class="row-fluid">

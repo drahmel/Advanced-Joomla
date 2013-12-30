@@ -18,21 +18,17 @@
 
 	<positions>
 		<position>debug</position>
-		<position>position-0</position>
-		<position>position-1</position>
-		<position>position-2</position>
-		<position>position-3</position>
-		<position>position-4</position>
-		<position>position-5</position>
-		<position>position-6</position>
-		<position>position-7</position>
-		<position>position-8</position>
-		<position>position-9</position>
-		<position>position-10</position>
-		<position>position-11</position>
-		<position>position-12</position>
-		<position>position-13</position>
-		<position>position-14</position>
+		<position>banner</position>
+		<position>fullnav</position>
+		<position>leftcol</position>
+		<position>centertop</position>
+		<position>centercol</position>
+		<position>centerbottom</position>
+		<position>rightcol</position>
+		<position>shared</position>
+		<position>fullfooter</position>
+		<position>preloadimages</position>
+		<position>dev</position>
 	</positions>
 
 	<config>
@@ -43,10 +39,43 @@
 				  <option value="0">No</option>
 				</field>
 
-				<field name="background_color"  type="text" default="white"
+				<field name="background_color"  type="color" default="#ffffff"
 					label="Background color"
 					description="Set the background color of the body tag"
+					/>
+				<field name="logo" class="" type="media" default=""
+					label="Full logo banner"
+					description="Select an image to display on the home page banner" />
+					
+				<field name="slimlogo" class="" type="media" default=""
+					label="Slim logo banner"
+					description="Select an image to display as the baner on subhome pages" />
+					
+				<field name="sitetitle"  type="text" default=""
+					label="Site banner title"
+					description="Title displayed if there is no banner image (and alt text on banner image)"
 					filter="string" />
+
+				<field name="sitesubtitle"  type="text" default="Set text in the Template settings in the Administrator interface"
+					label="Site banner subtitle"
+					description="Subtitle if there is no banner image"
+					filter="string" />
+
+
+				<field name="googleFontName" class="" type="text" default="Open+Sans"
+					label="TPL_PROTOSTAR_FONT_NAME_LABEL"
+					description="TPL_PROTOSTAR_FONT_NAME_DESC" />
+
+				<field name="fluidContainer"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					default="1"
+					label="TPL_PROTOSTAR_FLUID_LABEL"
+					description="Make the site render adjust to the window size or remain static"
+				>
+					<option value="1">Fluid layout</option>
+					<option value="0">Static layout</option>
+				</field>
 			</fieldset>
 		</fields>
 	</config>
