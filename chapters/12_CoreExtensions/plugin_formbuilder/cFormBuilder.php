@@ -24,14 +24,8 @@ class cFormBuilder {
 	function dbConnect() {
 		$hostURL = "localhost";
 		$dbUsername = "root";
-		$dbPassword = "red1";
+		$dbPassword = "orange88";
 		$useDatabase = "joomlasvn";
-		/*
-		$hostURL = "localhost";
-		$dbUsername = "bwp";
-		$dbPassword = "n2bb3";
-		$useDatabase = "dev_bwp";
-		*/
 		// connection to the database
 		$this->dbHandle = mysql_connect($hostURL, $dbUsername, $dbPassword)  or die("Unable to connect to MySQL");
 		
