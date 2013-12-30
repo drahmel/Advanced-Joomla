@@ -51,9 +51,11 @@ class cFormBuilder {
 		}
 		if(!$newFlag) {
 			$result = mysql_query( "SELECT * FROM ".$this->tableName." LIMIT 1;", $this->dbHandle );
-			$rowVals = @mysql_fetch_array($result);
+			$rowVals = array();
+			if($result) {
+				$rowVals = @mysql_fetch_array($result);
+			}
 		}
-		//$outStr .= "<td>" ;
 		$i=0;
 		foreach($this->tableFields as $fieldName => $fieldData) {
 			$tempLen = $fieldData['len'];
