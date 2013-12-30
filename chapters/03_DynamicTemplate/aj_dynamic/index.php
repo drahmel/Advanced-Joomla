@@ -32,7 +32,7 @@ $this->direction = $doc->direction;
 // Template setup code
 $user = JFactory::getUser();
 $app = JFactory::getApplication();
-$sitename = $app->getCfg('sitename');
+$sitename = htmlspecialchars($app->getCfg('sitename'));
 $base_url = JURI::base();
 
 $template_path = $base_url."templates".DS.$this->template;
@@ -41,6 +41,8 @@ $homePage = false;
 $homelogo = JUri::root() . $this->params->get('logo');
 $slimlogo = JUri::root() . $this->params->get('slimlogo');
 $logo = !empty($slimlogo)	?	$slimlogo	:	$homelogo;
+$fluidParameter = $this->params->get('fluidContainer');
+$fluidContainer = !empty($fluidParameter)	?	'-fluid'	:	'';
 
 if($app->getMenu()->getActive()) {
 	$menu_view = $app->getMenu()->getActive()->query['view'];
@@ -52,7 +54,7 @@ if($app->getMenu()->getActive()) {
 	}
 }
 
-// echo htmlspecialchars($app->getCfg('sitename'));
+
 
 // With so many different template position standards, we'll create an array here of
 // all of the possible position names from the template configuration
@@ -236,9 +238,9 @@ if(!empty($panels['rightCol'])) {
 				</a>
 				</header>
 			<?php endif; ?>
-		<div id="bodydiv" class="container-fluid">
+		<div id="bodydiv" class="container<?php echo $fluidContainer ?>">
 			<?php if(!empty($_GET['guide'])): ?>
-				<div class="row-fluid">
+				<div class="row<?php echo $fluidContainer ?>">
 					<div class="span1 color">1</div>
 					<div class="span1 color">2</div>
 					<div class="span1 color">3</div>
@@ -252,13 +254,13 @@ if(!empty($panels['rightCol'])) {
 					<div class="span1 color">11</div>
 					<div class="span1 color">12</div>
 				</div>
-				<div class="row-fluid">
+				<div class="row<?php echo $fluidContainer ?>">
 					<div class="span3 color">left</div>
 					<div class="span6 color">center</div>
 					<div class="span3 color">right</div>
 				</div>
 			<?php endif; ?>
-			<div class="row-fluid">
+			<div class="row<?php echo $fluidContainer ?>">
 				<?php if($this->countModules('atomic-search') or $this->countModules('position-0')) : ?>
 				<div class="span9">
 				</div>
@@ -268,10 +270,10 @@ if(!empty($panels['rightCol'])) {
 				<?php endif; ?>
 			</div>
 			<?php if($this->countModules('atomic-topmenu') or $this->countModules('position-2') ) : ?>
-			<div class="row-fluid">
+			<div class="row<?php echo $fluidContainer ?>">
 			</div>
 			<?php endif; ?>
-			<div class="row-fluid">
+			<div class="row<?php echo $fluidContainer ?>">
 				<?php if(!empty($panels['leftCol'])): ?>
 					<div id="leftcol" class="span3">
 						<?php foreach($panels['leftCol'] as $leftPosition): ?>
@@ -317,7 +319,7 @@ if(!empty($panels['rightCol'])) {
 			</div>
 		</div><!--end bodydiv-->
 		<div id="footerholder">
-			<div class="row-fluid"  id="footermenu">
+			<div class="row<?php echo $fluidContainer ?>"  id="footermenu">
 				<div class="span4 box box1">
 					<jdoc:include type="modules" name="position-9" style="beezDivision" headerlevel="3" />
 				</div>
@@ -328,7 +330,7 @@ if(!empty($panels['rightCol'])) {
 					<jdoc:include type="modules" name="position-11" style="beezDivision" headerlevel="3" />
 				</div>
 			</div>
-			<div class="row-fluid"  id="footermenu">
+			<div class="row<?php echo $fluidContainer ?>"  id="footermenu">
 				<div>
 					<jdoc:include type="modules" name="footer" />
 				</div>

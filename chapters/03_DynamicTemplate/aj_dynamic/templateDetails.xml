@@ -61,16 +61,11 @@
 					description="Subtitle if there is no banner image"
 					filter="string" />
 
-
-				<field name="googleFontName" class="" type="text" default="Open+Sans"
-					label="TPL_PROTOSTAR_FONT_NAME_LABEL"
-					description="TPL_PROTOSTAR_FONT_NAME_DESC" />
-
 				<field name="fluidContainer"
 					type="radio"
 					class="btn-group btn-group-yesno"
 					default="1"
-					label="TPL_PROTOSTAR_FLUID_LABEL"
+					label="Fluid or static layout"
 					description="Make the site render adjust to the window size or remain static"
 				>
 					<option value="1">Fluid layout</option>
