@@ -1,7 +1,7 @@
 <?php
 // no direct access
 defined( '_JEXEC' ) or die( 'Restricted access' );
-
+define('DS', '/');
 /*
 // Make sure the user is authorized to view this page
 $user = & JFactory::getUser();

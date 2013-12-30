@@ -4,7 +4,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 jimport( 'joomla.application.component.controller' );
 
-class Form_builderControllerform_builder extends JController {
+class Form_builderControllerform_builder extends JControllerAdmin {
 	function __construct( $config = array() ) {
 		parent::__construct( $config );
 		// Register Extra tasks
@@ -50,10 +50,10 @@ class Form_builderControllerform_builder extends JController {
 		JToolBarHelper::title( JText::_( 'Tinker Forms admin component' ) , 'addedit.png' );
 		JToolBarHelper::publishList();
 		JToolBarHelper::unpublishList();
-		JToolBarHelper::customX( 'copy', 'copy.png', 'copy_f2.png', 'Copy' );
+		JToolBarHelper::custom( 'copy', 'copy.png', 'copy_f2.png', 'Copy' );
 		JToolBarHelper::deleteList();
-		JToolBarHelper::editListX();
-		JToolBarHelper::addNewX();
+		JToolBarHelper::editList();
+		JToolBarHelper::addNew();
 		JToolBarHelper::preferences('com_banners', '200');
 		JToolBarHelper::help( 'screen.banners' );
 		echo JText::_( 'Version ' )."$version"."<p />";
