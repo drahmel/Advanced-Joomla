@@ -36,7 +36,10 @@ $sitename = $app->getCfg('sitename');
 $base_url = JURI::base();
 
 $template_path = $base_url."templates".DS.$this->template;
-$menu_view = $app->getMenu()->getActive()->query['view'];
+$menu_view = '';
+if($app->getMenu()->getActive()) {
+	$menu_view = $app->getMenu()->getActive()->query['view'];
+}
 
 // echo htmlspecialchars($app->getCfg('sitename'));
 
@@ -106,11 +109,11 @@ else
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	
 		<!-- Favicons for browser tabs, Google TV bookmark, and iPhone/iPad-->
-		<link rel="icon" href="/ui/template/" type="image/png" />
+		<link rel="icon" href="<?php echo $template_path.'/images/favicon114x114.png' ?>" type="image/png" />
 		<!-- iPhone standard bookmark icon (57x57px) home screen -->
-		<link rel="apple-touch-icon" href="/ui/template/" />
+		<link rel="apple-touch-icon" href="<?php echo $template_path.'/images/favicon114x114.png' ?>" />
 		<!-- iPhone Retina display icon (114x114px) home screen -->
-		<link rel="apple-touch-icon" href="/ui/template/" sizes="114x114" />
+		<link rel="apple-touch-icon" href="<?php echo $template_path.'/images/favicon114x114.png' ?>" sizes="114x114" />
 
 		<!-- Load minimized Twitter Bootstrap styles -->
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" type="text/css" />
