@@ -63,4 +63,4 @@ Testing scripts from chapter 10 for JMeter and Selenium that can be used to test
 
 h1. Copyright
 
-* Copyright (c) 2011 Dan Rahmel. All rights reserved.
+* Copyright (c) 2013-2014 Dan Rahmel. All rights reserved.
