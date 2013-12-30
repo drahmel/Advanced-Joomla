@@ -56,7 +56,7 @@
 					description="Title displayed if there is no banner image (and alt text on banner image)"
 					filter="string" />
 
-				<field name="sitesubtitle"  type="text" default="Set text in the Template settings in the Administrator interface"
+				<field name="sitesubtitle"  type="text" default="Set this text in the Template settings in the Administrator interface"
 					label="Site banner subtitle"
 					description="Subtitle if there is no banner image"
 					filter="string" />

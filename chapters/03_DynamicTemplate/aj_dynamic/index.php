@@ -37,8 +37,19 @@ $base_url = JURI::base();
 
 $template_path = $base_url."templates".DS.$this->template;
 $menu_view = '';
+$homePage = false;
+$homelogo = JUri::root() . $this->params->get('logo');
+$slimlogo = JUri::root() . $this->params->get('slimlogo');
+$logo = !empty($slimlogo)	?	$slimlogo	:	$homelogo;
+
 if($app->getMenu()->getActive()) {
 	$menu_view = $app->getMenu()->getActive()->query['view'];
+	if ($app->getMenu()->getActive() == $app->getMenu()->getDefault()) {
+		$homePage = true;
+		if(!empty($homelogo)) {
+			$logo = $homelogo;
+		}
+	}
 }
 
 // echo htmlspecialchars($app->getCfg('sitename'));
@@ -52,7 +63,7 @@ $temp = $this->params->get('fullnav');
 $panels['fullNav'] = explode(',', !empty($temp)	?	$temp	:	'banner,fullnav');
 
 $temp = $this->params->get('leftcol');
-$panels['leftCol'] = explode(',', !empty($temp)	?	$temp	:	'leftcol,leftslab,position-8,position-4,position-5,login,atomic-sidebar');
+$panels['leftCol'] = explode(',', !empty($temp)	?	$temp	:	'leftcol,position-8,position-4,position-5,login,atomic-sidebar');
 
 $temp = $this->params->get('centernav');
 $panels['centerNav'] = explode(',', !empty($temp)	?	$temp	:	'centernav,breadcrumbs,position-0,position-1,position-6,atomic-topmenu');
@@ -83,19 +94,7 @@ if(!empty($panels['rightCol'])) {
 	$centerSpan -= 3;
 }
 
-// Logo file or site title param
-if ($this->params->get('logoFile'))
-{
-	$logo = '<img src="'. JUri::root() . $this->params->get('logoFile') .'" alt="'. $sitename .'" />';
-}
-elseif ($this->params->get('sitetitle'))
-{
-	$logo = '<span class="site-title" title="'. $sitename .'">'. htmlspecialchars($this->params->get('sitetitle')) .'</span>';
-}
-else
-{
-	$logo = '<span class="site-title" title="'. $sitename .'">'. $sitename .'</span>';
-}
+
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -155,10 +154,13 @@ else
 		label {
 			display: inline;
 		}
+		#leftcol,#centercol,#rightcol {
+			margin-top: 20px;
+		}
 		.hideCol {
 			display: none;
 		}
-		#banner {
+		.header {
 			padding: 8px 16px;
 			background-color: darkblue;
 			background-color: #142849;
@@ -168,7 +170,7 @@ else
 			background-image: -o-radial-gradient(circle,#165387,#142849);
 			background-repeat: no-repeat;
 		}
-		#banner a, #banner a:hover {
+		.header a, .header a:hover {
 			text-shadow: 0px -2px 0px #333, 0px 2px 3px #666;
 			text-transform: uppercase;
 			font-size: 60px;
@@ -213,12 +215,27 @@ else
 		}
 		</style>
 			<!-- Header -->
-			<header class="header" role="banner" id="banner">
-					<a href="<?php echo $this->baseurl; ?>">
-						<?php echo $logo;?> <?php if ($this->params->get('sitedescription')) { echo '<div id="banner-subtitle">'. htmlspecialchars($this->params->get('sitedescription')) .'</div>'; } ?>
-					</a>
-				</div>
-			</header>
+			<?php if ($this->params->get('logo')): ?>
+				<header class="header-logo" role="banner" id="banner">
+				<a href="<?php echo $this->baseurl; ?>">
+					<img src="<?php echo $logo ?>" alt="<?php echo $sitename ?>" />
+				</a>
+				</header>
+			<?php elseif ($this->params->get('sitetitle')): ?>
+				<header class="header" role="banner" id="banner">
+				<a href="<?php echo $this->baseurl; ?>">
+					<span class="site-title" title="<?php echo $sitename ?>"><?php echo htmlspecialchars($this->params->get('sitetitle')) ?></span>
+					<?php if ($this->params->get('sitesubtitle')) { echo '<div id="banner-subtitle">'. htmlspecialchars($this->params->get('sitesubtitle')) .'</div>'; } ?>
+				</a>
+				</header>
+			<?php else: ?> 
+				<header class="header" role="banner" id="banner">
+				<a href="<?php echo $this->baseurl; ?>">
+					<span class="site-title" title="<?php echo $sitename ?>"><?php echo $sitename ?></span>
+					<?php if ($this->params->get('sitesubtitle')) { echo '<div id="banner-subtitle">'. htmlspecialchars($this->params->get('sitesubtitle')) .'</div>'; } ?>
+				</a>
+				</header>
+			<?php endif; ?>
 		<div id="bodydiv" class="container-fluid">
 			<?php if(!empty($_GET['guide'])): ?>
 				<div class="row-fluid">
@@ -256,16 +273,13 @@ else
 			<?php endif; ?>
 			<div class="row-fluid">
 				<?php if(!empty($panels['leftCol'])): ?>
-					<div id="leftslab" class="span3">
+					<div id="leftcol" class="span3">
 						<?php foreach($panels['leftCol'] as $leftPosition): ?>
 							<jdoc:include type="modules" name="<?php echo $leftPosition ?>" style="sidebar" />
 						<?php endforeach; ?>
 					</div>
 				<?php endif; ?>
-				<div id="centerslab" class="<?php echo "span".$centerSpan ?>">
-					<div class="span12">
-						&nbsp;
-					</div>
+				<div id="centercol" class="<?php echo "span".$centerSpan ?>">
 					<div id="breadcrumbs">
 						<jdoc:include type="modules" name="position-2" />
 					</div>
@@ -292,9 +306,9 @@ else
 						
 						</div><!--end contentarea-->
 					</div>
-				</div><!--end centerslab-->
+				</div><!--end centercol-->
 				<?php if(!empty($panels['rightCol'])): ?>
-					<div id="rightslab" class="span3">
+					<div id="rightcol" class="span3">
 						<?php foreach($panels['rightCol'] as $rightPosition): ?>
 							<jdoc:include type="modules" name="<?php echo $rightPosition ?>" style="border" />
 						<?php endforeach; ?>
