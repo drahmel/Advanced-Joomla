@@ -6,6 +6,12 @@ h2. What is this?
 * "Advanced Joomla book on Amazon":http://www.amazon.com/Advanced-Joomla-Dan-Rahmel/dp/143021628X
 * Official site: "Joomla Jumpstart at http://www.joomlajumpstart.com":http://www.joomlajumpstart.com
 
+h2. Is there a newer version of the source code?
+
+* I try to update the source code for compatibility with each new version of Joomla. Check out the Github site for the latest version:
+
+https://github.com/drahmel/Advanced-Joomla
+
 h2. What is Advanced Joomla!?
 
 A book from APress that covers advanced template design (including mobile), extension creation, and full site configuration.
