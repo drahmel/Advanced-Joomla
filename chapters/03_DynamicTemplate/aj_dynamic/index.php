@@ -19,16 +19,6 @@ $doc = JFactory::getDocument();
 $this->language = $doc->language;
 $this->direction = $doc->direction;
 
-// Add JavaScript Frameworks
-//JHtml::_('bootstrap.framework');
-//$doc->addScript('templates/' .$this->template. '/js/template.js');
-
-// Add Stylesheets
-//$doc->addStyleSheet('templates/'.$this->template.'/css/template.css');
-
-// Load optional RTL Bootstrap CSS
-//JHtml::_('bootstrap.loadCss', false, $this->direction);
-
 // Template setup code
 $user = JFactory::getUser();
 $app = JFactory::getApplication();
@@ -53,8 +43,6 @@ if($app->getMenu()->getActive()) {
 		}
 	}
 }
-
-
 
 // With so many different template position standards, we'll create an array here of
 // all of the possible position names from the template configuration
@@ -227,14 +215,14 @@ if(!empty($panels['rightCol'])) {
 				<header class="header" role="banner" id="banner">
 				<a href="<?php echo $this->baseurl; ?>">
 					<span class="site-title" title="<?php echo $sitename ?>"><?php echo htmlspecialchars($this->params->get('sitetitle')) ?></span>
-					<?php if ($this->params->get('sitesubtitle')) { echo '<div id="banner-subtitle">'. htmlspecialchars($this->params->get('sitesubtitle')) .'</div>'; } ?>
+					<?php if ($this->params->get('sitesubtitle')) { echo '<div id="banner-subtitle" class="hidden-phone">'. htmlspecialchars($this->params->get('sitesubtitle')) .'</div>'; } ?>
 				</a>
 				</header>
 			<?php else: ?> 
 				<header class="header" role="banner" id="banner">
 				<a href="<?php echo $this->baseurl; ?>">
 					<span class="site-title" title="<?php echo $sitename ?>"><?php echo $sitename ?></span>
-					<?php if ($this->params->get('sitesubtitle')) { echo '<div id="banner-subtitle">'. htmlspecialchars($this->params->get('sitesubtitle')) .'</div>'; } ?>
+					<?php if ($this->params->get('sitesubtitle')) { echo '<div id="banner-subtitle" class="hidden-phone">'. htmlspecialchars($this->params->get('sitesubtitle')) .'</div>'; } ?>
 				</a>
 				</header>
 			<?php endif; ?>
@@ -275,7 +263,7 @@ if(!empty($panels['rightCol'])) {
 			<?php endif; ?>
 			<div class="row<?php echo $fluidContainer ?>">
 				<?php if(!empty($panels['leftCol'])): ?>
-					<div id="leftcol" class="span3">
+					<div id="leftcol" class="span3 hidden-tablet">
 						<?php foreach($panels['leftCol'] as $leftPosition): ?>
 							<jdoc:include type="modules" name="<?php echo $leftPosition ?>" style="sidebar" />
 						<?php endforeach; ?>
@@ -310,7 +298,7 @@ if(!empty($panels['rightCol'])) {
 					</div>
 				</div><!--end centercol-->
 				<?php if(!empty($panels['rightCol'])): ?>
-					<div id="rightcol" class="span3">
+					<div id="rightcol" class="span3 hidden-phone">
 						<?php foreach($panels['rightCol'] as $rightPosition): ?>
 							<jdoc:include type="modules" name="<?php echo $rightPosition ?>" style="border" />
 						<?php endforeach; ?>
