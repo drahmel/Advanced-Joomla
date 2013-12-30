@@ -204,28 +204,28 @@ if(!empty($panels['rightCol'])) {
 			color:white;
 		}
 		</style>
-			<!-- Header -->
-			<?php if ($this->params->get('logo')): ?>
-				<header class="header-logo" role="banner" id="banner">
-				<a href="<?php echo $this->baseurl; ?>">
-					<img src="<?php echo $logo ?>" alt="<?php echo $sitename ?>" />
-				</a>
-				</header>
-			<?php elseif ($this->params->get('sitetitle')): ?>
-				<header class="header" role="banner" id="banner">
-				<a href="<?php echo $this->baseurl; ?>">
-					<span class="site-title" title="<?php echo $sitename ?>"><?php echo htmlspecialchars($this->params->get('sitetitle')) ?></span>
-					<?php if ($this->params->get('sitesubtitle')) { echo '<div id="banner-subtitle" class="hidden-phone">'. htmlspecialchars($this->params->get('sitesubtitle')) .'</div>'; } ?>
-				</a>
-				</header>
-			<?php else: ?> 
-				<header class="header" role="banner" id="banner">
-				<a href="<?php echo $this->baseurl; ?>">
-					<span class="site-title" title="<?php echo $sitename ?>"><?php echo $sitename ?></span>
-					<?php if ($this->params->get('sitesubtitle')) { echo '<div id="banner-subtitle" class="hidden-phone">'. htmlspecialchars($this->params->get('sitesubtitle')) .'</div>'; } ?>
-				</a>
-				</header>
-			<?php endif; ?>
+		<!-- Header -->
+		<?php if ($this->params->get('logo')): ?>
+			<header class="header-logo" role="banner" id="banner">
+			<a href="<?php echo $this->baseurl; ?>">
+				<img src="<?php echo $logo ?>" alt="<?php echo $sitename ?>" />
+			</a>
+			</header>
+		<?php elseif ($this->params->get('sitetitle')): ?>
+			<header class="header" role="banner" id="banner">
+			<a href="<?php echo $this->baseurl; ?>">
+				<span class="site-title" title="<?php echo $sitename ?>"><?php echo htmlspecialchars($this->params->get('sitetitle')) ?></span>
+				<?php if ($this->params->get('sitesubtitle')) { echo '<div id="banner-subtitle" class="hidden-phone">'. htmlspecialchars($this->params->get('sitesubtitle')) .'</div>'; } ?>
+			</a>
+			</header>
+		<?php else: ?> 
+			<header class="header" role="banner" id="banner">
+			<a href="<?php echo $this->baseurl; ?>">
+				<span class="site-title" title="<?php echo $sitename ?>"><?php echo $sitename ?></span>
+				<?php if ($this->params->get('sitesubtitle')) { echo '<div id="banner-subtitle" class="hidden-phone">'. htmlspecialchars($this->params->get('sitesubtitle')) .'</div>'; } ?>
+			</a>
+			</header>
+		<?php endif; ?>
 		<div id="bodydiv" class="container<?php echo $fluidContainer ?>">
 			<?php if(!empty($_GET['guide'])): ?>
 				<div class="row<?php echo $fluidContainer ?>">
@@ -306,6 +306,16 @@ if(!empty($panels['rightCol'])) {
 				<?php endif; ?>
 			</div>
 		</div><!--end bodydiv-->
+		<div class="row<?php echo $fluidContainer ?>">
+			<?php if(!empty($panels['rightCol'])): ?>
+				<div id="rightcol" class="span3 visible-phone">
+					<?php foreach($panels['rightCol'] as $rightPosition): ?>
+						<jdoc:include type="modules" name="<?php echo $rightPosition ?>" style="border" />
+					<?php endforeach; ?>
+				</div>
+			<?php endif; ?>
+		</div>
+
 		<div id="footerholder">
 			<div class="row<?php echo $fluidContainer ?>"  id="footermenu">
 				<div class="span4 box box1">
