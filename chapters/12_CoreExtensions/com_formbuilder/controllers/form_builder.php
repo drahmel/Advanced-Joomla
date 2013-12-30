@@ -138,23 +138,23 @@ class Form_builderControllerform_builder extends JControllerAdmin {
 	
 	<form id="form1" name="form1" method="post" action="index.php?option=com_formbuilder&task=update">
 	  <p>SQL:<br /> 
-		<textarea name="sql" cols="120" rows="4" id="sql"><?php 
+		<textarea name="sql" class="span12" rows="4" id="sql"><?php 
 		echo $rows[0]->sql; 
 		?></textarea>
 	  </p>
 	  <p>JSON:<br /> 
-		<textarea name="json" cols="150" rows="8" id="json"><?php 
+		<textarea name="json" class="span12" rows="8" id="json"><?php 
 		echo $rows[0]->json; 
 		?></textarea>
 	  </p>
 	  <p>HTML:<br /> 
-		<textarea name="html" cols="175" rows="12" id="html"><?php 
+		<textarea name="html" class="span12" rows="12" id="html"><?php 
 		echo $rows[0]->html; 
 		?></textarea>
 	  </p>
 	  <p>
 		<label>Location (optional) : </label>
-		<input name="location" type="text" id="location"
+		<input name="location" class="span12" type="text" id="location"
 		value='<?php echo $rows[0]->json; ?>'
 		/>
 		<input name="id" type="hidden" id="id"
