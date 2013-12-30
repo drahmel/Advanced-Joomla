@@ -246,7 +246,7 @@ class Form_builderViewform_builder
 			  </label>
 			</td>
 			<td width="80%">
-			  <input class="inputbox" type="text" name="name" id="name" size="50" value="<?php echo $row->name;?>" />
+			  <input class="inputbox span12" type="text" name="name" id="name" class="span12" value="<?php echo $row->name;?>" />
 			</td>
 		  </tr>
 		  <tr>
@@ -256,7 +256,7 @@ class Form_builderViewform_builder
 			  </label>
 			</td>
 			<td width="80%">
-			  <input class="inputbox" type="text" name="alias" id="alias" size="50" value="<?php echo $row->alias;?>" />
+			  <input class="inputbox span12" type="text" name="alias" id="alias" value="<?php echo $row->alias;?>" />
 			</td>
 		  </tr>
 		  <tr>

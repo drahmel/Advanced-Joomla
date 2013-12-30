@@ -39,15 +39,15 @@ class Form_builderControllerform_builder extends JControllerAdmin {
 	}
 
 	// Display edit list of all guestbook entries
-	function display() {
+	function display($cachable = false, $urlparams = array()) {
 		$version = '$Rev: 170 $';
 		$version = str_ireplace("$","",$version);
 		$version = str_ireplace("Rev:","",$version);
 		$version = "0.1." . trim($version);
-		$db =& JFactory::getDBO();
+		$db = JFactory::getDBO();
 		
 		// Set title in Administrator interface		 
-		JToolBarHelper::title( JText::_( 'Tinker Forms admin component' ) , 'addedit.png' );
+		JToolBarHelper::title( JText::_( 'Form Builder admin component' ) , 'addedit.png' );
 		JToolBarHelper::publishList();
 		JToolBarHelper::unpublishList();
 		JToolBarHelper::custom( 'copy', 'copy.png', 'copy_f2.png', 'Copy' );
@@ -59,7 +59,7 @@ class Form_builderControllerform_builder extends JControllerAdmin {
 		echo JText::_( 'Version ' )."$version"."<p />";
 		
 		//echo $queryTerm;
-		$query = "SELECT * FROM form_builder_forms ORDER BY id; ";
+		$query = "SELECT * FROM formbuilder_forms ORDER BY id; ";
 		$db->setQuery( $query );
 		$rows = $db->loadObjectList();
 		echo "<h1>Find</h1>";
@@ -103,9 +103,9 @@ class Form_builderControllerform_builder extends JControllerAdmin {
 	<?php
 		 foreach ($rows as $row) {
 			// Create url to allow user to click & jump to edit article
-			$url = "index.php?option=com_form_builder&task=edit&" .
+			$url = "index.php?option=com_formbuilder&task=edit&" .
 				"&id=" . $row->id;
-		$link = 'index.php?option=com_guestbook&task=edit&id='. $row->id;
+		$link = 'index.php?option=com_formbuilder&task=edit&id='. $row->id;
 		  if(strlen($row->sql)>0) { $hasSQL = "Y"; } else { $hasSQL = "N"; }
 		  if(strlen($row->json)>0) { $hasJSON = "Y"; } else { $hasJSON = "N"; }
 		  if(strlen($row->html)>0) { $hasHTML = "Y"; } else { $hasHTML = "N"; }
@@ -123,20 +123,20 @@ class Form_builderControllerform_builder extends JControllerAdmin {
 	}
 	
 	function edit() {
-		JToolBarHelper::title( JText::_( 'Tinker Forms Editor' ), 'addedit.png' );
+		JToolBarHelper::title( JText::_( 'Form Builder Editor' ), 'addedit.png' );
 		JToolBarHelper::save( 'save' );
 		JToolBarHelper::apply('apply');
 		JToolBarHelper::cancel( 'cancel' );
 		
-		$db =& JFactory::getDBO();
+		$db = JFactory::getDBO();
 		$query = "SELECT a.id, a.name,a.sql,a.json,a.html" .
-		" FROM form_builder_forms AS a" .
+		" FROM formbuilder_forms AS a" .
 		" WHERE a.id = " . JRequest::getVar( 'id' );
 		$db->setQuery( $query, 0, 10 );
 		If($rows = $db->loadObjectList()) {
 	?>
 	
-	<form id="form1" name="form1" method="post" action="index.php?option=com_form_builder&task=update">
+	<form id="form1" name="form1" method="post" action="index.php?option=com_formbuilder&task=update">
 	  <p>SQL:<br /> 
 		<textarea name="sql" cols="120" rows="4" id="sql"><?php 
 		echo $rows[0]->sql; 
