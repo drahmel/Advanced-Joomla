@@ -35,17 +35,16 @@ class Form_builderControllerform_builder extends JControllerAdmin {
 			$query = "INSERT INTO formbuilder_forms (`name`, `alias`, `json`)
 				VALUES
 				({$colName}, {$colAlias}, {$colJSON});";
-				echo $query;
-		//exit;
-			$db->setQuery( $insertFields, 0);
+			$db->setQuery( $query, 0);
 			$result = $db->query();
 			$app->enqueueMessage (JText::_ ('Form inserted!'));
+			$id = $db->insertid();
 		} else {
 			// Record updates
-			$insertFields = "UPDATE formbuilder_forms " .
+			$query = "UPDATE formbuilder_forms " .
 				" SET name={$colName}, alias={$colAlias}, json={$colJSON} " .
 				" WHERE id = " . $id ;
-			$db->setQuery( $insertFields, 0);
+			$db->setQuery( $query, 0);
 			$result = $db->query();
 			$app->enqueueMessage (JText::_ ('Form updated!'));
 		}
