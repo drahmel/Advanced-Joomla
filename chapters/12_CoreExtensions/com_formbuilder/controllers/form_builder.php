@@ -9,9 +9,9 @@ class Form_builderControllerform_builder extends JControllerAdmin {
 		parent::__construct( $config );
 		// Register Extra tasks
 		$this->registerTask( 'add', 'edit' );
-		$this->registerTask( 'apply', 'save' );
-		$this->registerTask( 'resethits', 'save' );
-		$this->registerTask( 'unpublish', 'publish' );
+		//$this->registerTask( 'apply', 'save' );
+		//$this->registerTask( 'resethits', 'save' );
+		//$this->registerTask( 'unpublish', 'publish' );
 	}
 
 	// Record data received from form posting

@@ -9,14 +9,19 @@ JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_form_builder'
 $controllerName = JRequest::getCmd( 'c', 'form_builder' );
 //echo "Controller:".$controllerName;
 if($controllerName == 'client') {
-	JSubMenuHelper::addEntry(JText::_('FormBuilder'), 'index.php?option=com_FormBuilder');
+	JSubMenuHelper::addEntry(JText::_('FormBuilder'), 'index.php?option=com_formbuilder');
 	//JSubMenuHelper::addEntry(JText::_('Clients'), 'index.php?option=com_FormBuilder&c=client', true );
 	JSubMenuHelper::addEntry(JText::_('Categories'), 'index.php?option=com_categories&extension=com_formbuilder');
 } else {
-	JSubMenuHelper::addEntry(JText::_('FormBuilder'), 'index.php?option=com_FormBuilder', true );
+	JSubMenuHelper::addEntry(JText::_('FormBuilder'), 'index.php?option=com_formbuilder', true );
 	//JSubMenuHelper::addEntry(JText::_('Clients'), 'index.php?option=com_FormBuilder&c=client');
 	JSubMenuHelper::addEntry(JText::_('Categories'), 'index.php?option=com_categories&extension=com_formbuilder');
 }
+
+$app  = JFactory::getApplication();
+$view   = $app->input->get('view', 'forms');
+$layout = $app->input->get('layout', 'default');
+$id     = $app->input->getInt('id');
 
 switch ($controllerName)
 {
