@@ -8,16 +8,16 @@ class Form_builderControllerform_builder extends JControllerAdmin {
 	function __construct( $config = array() ) {
 		parent::__construct( $config );
 		// Register Extra tasks
-		$this->registerTask( 'add',			   'edit' );
-		$this->registerTask( 'apply',		 'save' );
-		$this->registerTask( 'resethits',	 'save' );
-		$this->registerTask( 'unpublish',	 'publish' );
+		$this->registerTask( 'add', 'edit' );
+		$this->registerTask( 'apply', 'save' );
+		$this->registerTask( 'resethits', 'save' );
+		$this->registerTask( 'unpublish', 'publish' );
 	}
 
 	// Record data received from form posting
 	function save()	 {
 		// Set title in Administrator interface		 
-		JToolBarHelper::title( JText::_( 'Update Guestbook Entry' ), 'addedit.png' );
+		JToolBarHelper::title( JText::_( 'Update Form Entry' ), 'addedit.png' );
 		
 		// Get reference to database object
 		$db = JFactory::getDBO();
@@ -28,22 +28,19 @@ class Form_builderControllerform_builder extends JControllerAdmin {
 		$fldID = "'" . $db->getEscaped(JRequest::getVar( 'id' )) . "'";
 		
 		// Record updates to jos_guestbook table
-		$insertFields = "UPDATE #__guestbook " .
+		$insertFields = "UPDATE formbuilder_forms " .
 		  " SET message=" . $fldMessage . ", " .
 		  " location=" . $fldLocation .
 		  " WHERE id = " . $fldID ;
 		$db->setQuery( $insertFields, 0);
 		$db->query();
 		echo "<h3>Field updated!</h3>";
-		echo "<a href='index.php?option=com_guestbook'>Return to guestbook list</a>";
+		echo "<a href='index.php?option=com_formbuilder'>Return to form list</a>";
 	}
 
 	// Display edit list of all guestbook entries
 	function display($cachable = false, $urlparams = array()) {
-		$version = '$Rev: 170 $';
-		$version = str_ireplace("$","",$version);
-		$version = str_ireplace("Rev:","",$version);
-		$version = "0.1." . trim($version);
+		$version = "0.1.170";
 		$db = JFactory::getDBO();
 		
 		// Set title in Administrator interface		 
@@ -77,70 +74,68 @@ class Form_builderControllerform_builder extends JControllerAdmin {
 	</tr>
 	
 	<?php
-		 foreach ($rows as $row) {
+		$out = '';
+		foreach ($rows as $row) {
 			// Create url to allow user to click & jump to edit article
 			$url = "index.php?option=com_formbuilder&task=edit&" .
 				"&id=" . $row->id;
-		$link = 'index.php?option=com_formbuilder&task=edit&id='. $row->id;
-		  if(strlen($row->sql)>0) { $hasSQL = "Y"; } else { $hasSQL = "N"; }
-		  if(strlen($row->json)>0) { $hasJSON = "Y"; } else { $hasJSON = "N"; }
-		  if(strlen($row->html)>0) { $hasHTML = "Y"; } else { $hasHTML = "N"; }
-		  $target = ""; // TARGET='_blank'
-		  echo "<tr>" .
-			   "<td>" . $row->id . "</td>" .
-			"<td><a href='" . $url . "' $target >" . $row->name . "</a></td>" .
-			"<td>" . $hasSQL . "</td>" .
-			"<td>" . $hasJSON . "</td>" .
-			"<td>" . $hasHTML . "</td>" .
-			   "</tr>";
+			$link = 'index.php?option=com_formbuilder&task=edit&id='. $row->id;
+			if(strlen($row->sql)>0) { $hasSQL = "Y"; } else { $hasSQL = "N"; }
+			if(strlen($row->json)>0) { $hasJSON = "Y"; } else { $hasJSON = "N"; }
+			if(strlen($row->html)>0) { $hasHTML = "Y"; } else { $hasHTML = "N"; }
+			$target = ""; // TARGET='_blank'
+			$out .= "<tr>" .
+				"<td>" . $row->id . "</td>" .
+				"<td><a href='" . $url . "' $target >" . $row->name . "</a></td>" .
+				"<td>" . $hasSQL . "</td>" .
+				"<td>" . $hasJSON . "</td>" .
+				"<td>" . $hasHTML . "</td>" .
+				"</tr>";
 		 }
-		 echo "</table>";
-		 echo "<h3>Click on an entry link in the table to edit entry.</h3>";
+		 $out .= "</table>";
+		 echo $out;
 	}
 	
 	function edit() {
-		JToolBarHelper::title( JText::_( 'Form Builder Editor' ), 'addedit.png' );
-		JToolBarHelper::save( 'save' );
+		JToolBarHelper::title( JText::_( 'Form Builder - Form Editor' ), 'addedit.png' );
 		JToolBarHelper::apply('apply');
+		JToolBarHelper::save( 'save' );
 		JToolBarHelper::cancel( 'cancel' );
 		
 		$db = JFactory::getDBO();
 		$query = "SELECT a.id, a.name,a.sql,a.json,a.html" .
-		" FROM formbuilder_forms AS a" .
-		" WHERE a.id = " . JRequest::getVar( 'id' );
+			" FROM formbuilder_forms AS a" .
+			" WHERE a.id = " . JRequest::getVar( 'id' );
 		$db->setQuery( $query, 0, 10 );
-		If($rows = $db->loadObjectList()) {
+		if($rows = $db->loadObjectList()) {
 	?>
 	
 	<form id="form1" name="form1" method="post" action="index.php?option=com_formbuilder&task=update">
-	  <p>SQL:<br /> 
-		<textarea name="sql" class="span12" rows="4" id="sql"><?php 
-		echo $rows[0]->sql; 
-		?></textarea>
-	  </p>
-	  <p>JSON:<br /> 
-		<textarea name="json" class="span12" rows="8" id="json"><?php 
-		echo $rows[0]->json; 
-		?></textarea>
-	  </p>
-	  <p>HTML:<br /> 
-		<textarea name="html" class="span12" rows="12" id="html"><?php 
-		echo $rows[0]->html; 
-		?></textarea>
-	  </p>
-	  <p>
-		<label>Location (optional) : </label>
-		<input name="location" class="span12" type="text" id="location"
-		value='<?php echo $rows[0]->json; ?>'
-		/>
-		<input name="id" type="hidden" id="id"
-		value='<?php echo $rows[0]->id; ?>'
-		/>
-	  </p>
-	  <p>
-		<input type="submit" name="Submit" value="Record Changes" />
-	  </p>
+		<div>
+			SQL:
+			<textarea name="sql" class="span12" rows="4" id="sql"><?php  echo $rows[0]->sql;  ?></textarea>
+		</div>
+		<div>
+			JSON:
+			<textarea name="json" class="span12" rows="8" id="json"><?php  echo $rows[0]->json;  ?></textarea>
+		</div>
+		<div>
+			HTML:
+			<textarea name="html" class="span12" rows="12" id="html"><?php  echo $rows[0]->html;  ?></textarea>
+		</div>
+		<div>
+			<label>Location (optional) : </label>
+			<input name="location" class="span12" type="text" id="location" value='<?php echo ''; ?>' />
+			<input name="id" type="hidden" id="id" value='<?php echo $rows[0]->id; ?>' />
+		</div>
+		<div>
+			<input type="submit" name="Submit" value="Record Changes" />
+		</div>
 	</form>
+	<script>
+		var json = JSON.stringify(JSON.parse(jQuery("#json").text()), null, "\t");
+		jQuery("#json").text(json);
+	</script>
 	
 	<?php }	   
 	
