@@ -2,13 +2,6 @@
 // no direct access
 defined( '_JEXEC' ) or die( 'Restricted access' );
 define('DS', '/');
-/*
-// Make sure the user is authorized to view this page
-$user = & JFactory::getUser();
-if (!$user->authorize( 'com_form_builder', 'manage' )) {
-	$mainframe->redirect( 'index.php', JText::_('ALERTNOTAUTH') );
-}
-*/
 
 // Set the table directory
 JTable::addIncludePath(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_form_builder'.DS.'tables');
@@ -17,12 +10,12 @@ $controllerName = JRequest::getCmd( 'c', 'form_builder' );
 //echo "Controller:".$controllerName;
 if($controllerName == 'client') {
 	JSubMenuHelper::addEntry(JText::_('FormBuilder'), 'index.php?option=com_FormBuilder');
-	JSubMenuHelper::addEntry(JText::_('Clients'), 'index.php?option=com_FormBuilder&c=client', true );
-	JSubMenuHelper::addEntry(JText::_('Categories'), 'index.php?option=com_categories&section=com_banner');
+	//JSubMenuHelper::addEntry(JText::_('Clients'), 'index.php?option=com_FormBuilder&c=client', true );
+	JSubMenuHelper::addEntry(JText::_('Categories'), 'index.php?option=com_categories&extension=com_formbuilder');
 } else {
 	JSubMenuHelper::addEntry(JText::_('FormBuilder'), 'index.php?option=com_FormBuilder', true );
-	JSubMenuHelper::addEntry(JText::_('Clients'), 'index.php?option=com_FormBuilder&c=client');
-	JSubMenuHelper::addEntry(JText::_('Categories'), 'index.php?option=com_categories&section=com_banner');
+	//JSubMenuHelper::addEntry(JText::_('Clients'), 'index.php?option=com_FormBuilder&c=client');
+	JSubMenuHelper::addEntry(JText::_('Categories'), 'index.php?option=com_categories&extension=com_formbuilder');
 }
 
 switch ($controllerName)

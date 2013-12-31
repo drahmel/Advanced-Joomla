@@ -15,7 +15,8 @@ class Form_builderControllerform_builder extends JControllerAdmin {
 	}
 
 	// Record data received from form posting
-	function save()	 {
+	function update() {
+		$app  = JFactory::getApplication();
 		// Set title in Administrator interface		 
 		JToolBarHelper::title( JText::_( 'Update Form Entry' ), 'addedit.png' );
 		
@@ -23,19 +24,22 @@ class Form_builderControllerform_builder extends JControllerAdmin {
 		$db = JFactory::getDBO();
 		
 		// Retrieve data from form
-		$fldMessage = "'" . $db->getEscaped(JRequest::getVar('message')) . "'";
-		$fldLocation = "'" . $db->getEscaped(JRequest::getVar( 'location' )) . "'";
-		$fldID = "'" . $db->getEscaped(JRequest::getVar( 'id' )) . "'";
+		$fldJSON = $db->quote($app->input->getVar('json'));
+		$fldID = $app->input->getInt('id');
 		
 		// Record updates to jos_guestbook table
 		$insertFields = "UPDATE formbuilder_forms " .
-		  " SET message=" . $fldMessage . ", " .
-		  " location=" . $fldLocation .
-		  " WHERE id = " . $fldID ;
+			" SET json=" . $fldJSON . " " .
+			" WHERE id = " . $fldID ;
 		$db->setQuery( $insertFields, 0);
-		$db->query();
-		echo "<h3>Field updated!</h3>";
-		echo "<a href='index.php?option=com_formbuilder'>Return to form list</a>";
+		$result = $db->query();
+		if($result) {
+			echo "<h3>Form updated!</h3>";
+			echo "<a href='index.php?option=com_formbuilder'>Return to form list</a>";
+		} else {
+			echo "<h3>Problem updating</h3>";
+			echo "<a href='index.php?option=com_formbuilder'>Return to form list</a>";			
+		}
 	}
 
 	// Display edit list of all guestbook entries
@@ -111,18 +115,18 @@ class Form_builderControllerform_builder extends JControllerAdmin {
 	?>
 	
 	<form id="form1" name="form1" method="post" action="index.php?option=com_formbuilder&task=update">
-		<div>
+		<!-- div>
 			SQL:
 			<textarea name="sql" class="span12" rows="4" id="sql"><?php  echo $rows[0]->sql;  ?></textarea>
-		</div>
+		</div -->
 		<div>
 			JSON:
-			<textarea name="json" class="span12" rows="8" id="json"><?php  echo $rows[0]->json;  ?></textarea>
+			<textarea name="json" class="span12" rows="20" id="json"><?php  echo $rows[0]->json;  ?></textarea>
 		</div>
-		<div>
+		<!-- div>
 			HTML:
 			<textarea name="html" class="span12" rows="12" id="html"><?php  echo $rows[0]->html;  ?></textarea>
-		</div>
+		</div -->
 		<div>
 			<label>Location (optional) : </label>
 			<input name="location" class="span12" type="text" id="location" value='<?php echo ''; ?>' />
