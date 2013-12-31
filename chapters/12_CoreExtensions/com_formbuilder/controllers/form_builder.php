@@ -115,13 +115,31 @@ class Form_builderControllerform_builder extends JControllerAdmin {
 		JToolBarHelper::apply('apply');
 		JToolBarHelper::save( 'save' );
 		JToolBarHelper::cancel( 'cancel' );
-		
+
+
+		$app  = JFactory::getApplication();
 		$db = JFactory::getDBO();
-		$query = "SELECT a.id, a.name,a.sql,a.json,a.html" .
-			" FROM formbuilder_forms AS a" .
-			" WHERE a.id = " . $id;
-		$db->setQuery( $query, 0, 10 );
-		if($rows = $db->loadObjectList()) {
+		
+		// Retrieve data from form
+		$task = $app->input->getVar('task');
+		
+		$query = "SELECT a.id, a.name,a.alias,a.sql,a.json,a.html FROM formbuilder_forms AS a";
+		if($task != 'add') {
+			$query .= " WHERE a.id = " . $id;
+		}
+		$db->setQuery($query, 0, 1);
+		if($row = $db->loadAssoc()) {
+			// If adding a new form, clear the existing fields
+			if($task == 'add') {
+				foreach($row as $col => $val) {
+					$row[$col] = '';
+					if($col == 'json') {
+						// Provide basic dummy fields
+						$row[$col] = '{"fields":{"name":{"label":"Name","type":"text","class":"span12","placeholder":"","single":1},"email":{"label":"Email","type":"text","class":"span12","placeholder":"(optional)","single":1},"comment":{"label":"Comment","type":"text","class":"span12","placeholder":"","single":1}}}';
+						
+					}
+				}
+			}
 	?>
 	
 	<form id="adminForm" name="adminForm" method="post" action="index.php?option=com_formbuilder&task=update">
@@ -131,20 +149,26 @@ class Form_builderControllerform_builder extends JControllerAdmin {
 		<input type="hidden" name="boxchecked" value="0" />
 		<!-- div>
 			SQL:
-			<textarea name="sql" class="span12" rows="4" id="sql"><?php  echo $rows[0]->sql;  ?></textarea>
+			<textarea name="sql" class="span12" rows="4" id="sql"><?php  echo $row['sql'];  ?></textarea>
 		</div -->
 		<div>
+			Name: <input name="name" class="span6" id="name" value="<?php  echo $row['name'];  ?>" />
+		</div>
+		<div>
+			Alias: <input name="alias" class="span4" id="alias" value="<?php  echo $row['alias'];  ?>" />
+		</div>
+		<div>
 			JSON:
-			<textarea name="json" class="span12" rows="20" id="json"><?php  echo $rows[0]->json;  ?></textarea>
+			<textarea name="json" class="span12" rows="20" id="json"><?php  echo $row['json'];  ?></textarea>
 		</div>
 		<!-- div>
 			HTML:
-			<textarea name="html" class="span12" rows="12" id="html"><?php  echo $rows[0]->html;  ?></textarea>
+			<textarea name="html" class="span12" rows="12" id="html"><?php  echo $row['html'];  ?></textarea>
 		</div -->
 		<!-- div>
 			<label>Location (optional) : </label>
 			<input name="location" class="span12" type="text" id="location" value='<?php echo ''; ?>' />
-			<input name="id" type="hidden" id="id" value='<?php echo $rows[0]->id; ?>' />
+			<input name="id" type="hidden" id="id" value='<?php echo $row['id']; ?>' />
 		</div -->
 	</form>
 	<script>
