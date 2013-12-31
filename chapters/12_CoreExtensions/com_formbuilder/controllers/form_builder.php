@@ -9,9 +9,9 @@ class Form_builderControllerform_builder extends JControllerAdmin {
 		parent::__construct( $config );
 		// Register Extra tasks
 		$this->registerTask( 'add', 'edit' );
-		//$this->registerTask( 'apply', 'save' );
-		//$this->registerTask( 'resethits', 'save' );
-		//$this->registerTask( 'unpublish', 'publish' );
+		$this->registerTask( 'apply', 'save' );
+		$this->registerTask( 'resethits', 'save' );
+		$this->registerTask( 'unpublish', 'publish' );
 	}
 
 	// Record data received from form posting
@@ -24,22 +24,33 @@ class Form_builderControllerform_builder extends JControllerAdmin {
 		$db = JFactory::getDBO();
 		
 		// Retrieve data from form
-		$fldJSON = $db->quote($app->input->getVar('json'));
+		$colName = $db->quote($app->input->getVar('name'));
+		$colAlias = $db->quote($app->input->getVar('alias'));
+		// Decode and recode the JSON to make sure it's valid
+		$colJSON = $app->input->getVar('json');
+		$data = json_decode($colJSON, true);
+		$colJSON = $db->quote(json_encode($data));
 		$id = $app->input->getInt('id');
-		
 		if(empty($id)) {
-			
+			$query = "INSERT INTO formbuilder_forms (`name`, `alias`, `json`)
+				VALUES
+				({$colName}, {$colAlias}, {$colJSON});";
+				echo $query;
+		//exit;
+			$db->setQuery( $insertFields, 0);
+			$result = $db->query();
+			$app->enqueueMessage (JText::_ ('Form inserted!'));
 		} else {
-			// Record updates to jos_guestbook table
+			// Record updates
 			$insertFields = "UPDATE formbuilder_forms " .
-				" SET json=" . $fldJSON . " " .
-				" WHERE id = " . $fldID ;
+				" SET name={$colName}, alias={$colAlias}, json={$colJSON} " .
+				" WHERE id = " . $id ;
 			$db->setQuery( $insertFields, 0);
 			$result = $db->query();
 			$app->enqueueMessage (JText::_ ('Form updated!'));
 		}
 		if($app->input->getVar('task') == 'apply') {
-			$this->setRedirect (JRoute::_ ("index.php?option=com_formbuilder&task=edit&id=$fldID", false));
+			$this->setRedirect (JRoute::_ ("index.php?option=com_formbuilder&task=edit&id=$id", false));
 		} else {
 			$this->setRedirect (JRoute::_ ("index.php?option=com_formbuilder", false));			
 		}
