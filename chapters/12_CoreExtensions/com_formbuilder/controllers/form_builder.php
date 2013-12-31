@@ -75,7 +75,8 @@ class Form_builderControllerform_builder extends JControllerAdmin {
 			window.addEvent('domready', function(){ var JTooltips = new Tips($$('.hasTip'), { maxTitleChars: 50, fixed: false}); });
 	</script>
 	
-	
+	<form action="/administrator/index.php?option=com_formbuilder&amp;view=forms" method="post" name="adminForm" id="adminForm">
+		<input type="hidden" name="task" value="" />
 	<table class="table table-striped adminlist">
 	<tr>
 		<th width=5%> <?php echo JText::_( 'EntryID' ); ?> </th>
@@ -104,7 +105,7 @@ class Form_builderControllerform_builder extends JControllerAdmin {
 				"<td>" . $hasHTML . "</td>" .
 				"</tr>";
 		 }
-		 $out .= "</table>";
+		 $out .= "</table></form>";
 		 echo $out;
 	}
 	
