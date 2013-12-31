@@ -2,28 +2,27 @@
 <extension type="component" version="2.5.0">
 	<name>Form Builder</name>
 	<author>Dan Rahmel</author>
-	<version>1.0.0</version>
-	<description>Setup and configuration for display of Form Builder component.</description>
+	<version>1.1.0</version>
+	<description>Setup and administration for the forms displayed by the Form Builder plugin.</description>
 	
-	<update>
-		<schemas>
-			<schemapath type="mysql">sql/updates/mysql</schemapath>
-		</schemas>
-	</update>
+	<install> <!-- Runs on install -->
+		<sql>
+			<file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+		</sql>
+	</install>
 
 	<files folder="site">
 		<filename>index.html</filename>
-		<filename>helloworld.php</filename>
 	</files>
 	<administration>
-		 <menu>Form_Builder</menu>
+		 <menu>Form Builder</menu>
 		 <files folder="admin">
-			<filename 
-				component="formbuilder">formbuilder.php</filename>
+			<filename component="formbuilder">formbuilder.php</filename>
 			<filename>formbuilder.xml</filename>
 			<folder>controllers</folder>
 			<folder>tables</folder>
 			<folder>views</folder>
+			<folder>sql</folder>
 		 </files>
 	</administration>
 </extension>

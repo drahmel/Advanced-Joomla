@@ -48,22 +48,19 @@ class Form_builderControllerform_builder extends JControllerAdmin {
 		
 		// Set title in Administrator interface		 
 		JToolBarHelper::title( JText::_( 'Form Builder admin component' ) , 'addedit.png' );
+		JToolBarHelper::addNew();
 		JToolBarHelper::publishList();
 		JToolBarHelper::unpublishList();
 		JToolBarHelper::custom( 'copy', 'copy.png', 'copy_f2.png', 'Copy' );
 		JToolBarHelper::deleteList();
 		JToolBarHelper::editList();
-		JToolBarHelper::addNew();
-		JToolBarHelper::preferences('com_banners', '200');
-		JToolBarHelper::help( 'screen.banners' );
+		JToolBarHelper::preferences('com_formbuilder', '200');
+		JToolBarHelper::help( 'screen.formbuilder' );
 		echo JText::_( 'Version ' )."$version"."<p />";
 		
-		//echo $queryTerm;
 		$query = "SELECT * FROM formbuilder_forms ORDER BY id; ";
 		$db->setQuery( $query );
 		$rows = $db->loadObjectList();
-		echo "<h1>Find</h1>";
-		//print_r($rows);
 	?>
 	 <script type="text/javascript">
 			window.addEvent('domready', function(){ new Accordion($$('.panel h3.jpane-toggler'), $$('.panel div.jpane-slider'), {onActive: function(toggler, i) { toggler.addClass('jpane-toggler-down'); toggler.removeClass('jpane-toggler'); },onBackground: function(toggler, i) { toggler.addClass('jpane-toggler'); toggler.removeClass('jpane-toggler-down'); },duration: 300,opacity: false}); });
@@ -71,16 +68,6 @@ class Form_builderControllerform_builder extends JControllerAdmin {
 	</script>
 	
 	
-	<form id="searchform" name="searchform" method="post" action="index.php?option=com_findreplace&task=search">
-	<span class="editlinktip"><label for="detailscreated_by_alias" class="hasTip" title="Search Terms::Enter search terms here. ">Find: </label></span>
-		<input name="findterm1" type="text" id="findterm1" value='<?php echo ""; ?>' /> OR 
-		<input name="id" type="hidden" id="id"
-		value='<?php echo 1; ?>'
-		/>
-		<input type="submit" name="Submit" value="Find" />
-	 
-	</form>
-	<hr />
 	<table class="adminlist">
 	<tr>
 		 <td class="title" width=5%>
