@@ -47,7 +47,7 @@ class Form_builderControllerform_builder extends JControllerAdmin {
 		$db = JFactory::getDBO();
 		
 		// Set title in Administrator interface		 
-		JToolBarHelper::title( JText::_( 'Form Builder admin component' ) , 'addedit.png' );
+		JToolBarHelper::title( JText::_( 'Form Builder admin component -- ' . JText::_( 'version' )." $version" ) , 'addedit.png' );
 		JToolBarHelper::addNew();
 		JToolBarHelper::publishList();
 		JToolBarHelper::unpublishList();
@@ -56,7 +56,6 @@ class Form_builderControllerform_builder extends JControllerAdmin {
 		JToolBarHelper::editList();
 		JToolBarHelper::preferences('com_formbuilder', '200');
 		JToolBarHelper::help( 'screen.formbuilder' );
-		echo JText::_( 'Version ' )."$version"."<p />";
 		
 		$query = "SELECT * FROM formbuilder_forms ORDER BY id; ";
 		$db->setQuery( $query );
@@ -68,23 +67,13 @@ class Form_builderControllerform_builder extends JControllerAdmin {
 	</script>
 	
 	
-	<table class="adminlist">
+	<table class="table table-striped adminlist">
 	<tr>
-		 <td class="title" width=5%>
-		  <strong><?php echo JText::_( 'EntryID' ); ?></strong>
-		 </td>
-		 <td class="title" width=50%>
-		  <strong><?php echo JText::_( 'Name' ); ?></strong>
-		 </td>
-		 <td class="title" width=5%>
-		  <strong><?php echo JText::_( 'SQL?' ); ?></strong>
-		 </td>
-		 <td class="title" width=5%>
-		  <strong><?php echo JText::_( 'Display?' ); ?></strong>
-		 </td>
-		<td class="title" width=5%>
-		  <strong><?php echo JText::_( 'HTML?' ); ?></strong>
-		 </td>
+		<th width=5%> <?php echo JText::_( 'EntryID' ); ?> </th>
+		<th width=50%> <?php echo JText::_( 'Name' ); ?> </th>
+		<th width=5%> <?php echo JText::_( 'SQL?' ); ?> </th>
+		<th width=5%> <?php echo JText::_( 'Display?' ); ?> </th>
+		<th width=5%> <?php echo JText::_( 'HTML?' ); ?> </th>
 	</tr>
 	
 	<?php
