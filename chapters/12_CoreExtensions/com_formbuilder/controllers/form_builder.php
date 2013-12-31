@@ -15,7 +15,7 @@ class Form_builderControllerform_builder extends JControllerAdmin {
 	}
 
 	// Record data received from form posting
-	function update() {
+	function save() {
 		$app  = JFactory::getApplication();
 		// Set title in Administrator interface		 
 		JToolBarHelper::title( JText::_( 'Update Form Entry' ), 'addedit.png' );
@@ -33,12 +33,20 @@ class Form_builderControllerform_builder extends JControllerAdmin {
 			" WHERE id = " . $fldID ;
 		$db->setQuery( $insertFields, 0);
 		$result = $db->query();
+		/*
 		if($result) {
 			echo "<h3>Form updated!</h3>";
 			echo "<a href='index.php?option=com_formbuilder'>Return to form list</a>";
 		} else {
 			echo "<h3>Problem updating</h3>";
 			echo "<a href='index.php?option=com_formbuilder'>Return to form list</a>";			
+		}
+		*/
+		$app->enqueueMessage (JText::_ ('Form updated!'));    
+		if($app->input->getVar('task') == 'apply') {
+			$this->setRedirect (JRoute::_ ("index.php?option=com_formbuilder&task=edit&id=$fldID", false));
+		} else {
+			$this->setRedirect (JRoute::_ ("index.php?option=com_formbuilder", false));			
 		}
 	}
 
@@ -101,6 +109,7 @@ class Form_builderControllerform_builder extends JControllerAdmin {
 	}
 	
 	function edit() {
+		$id = JRequest::getVar( 'id' );
 		JToolBarHelper::title( JText::_( 'Form Builder - Form Editor' ), 'addedit.png' );
 		JToolBarHelper::apply('apply');
 		JToolBarHelper::save( 'save' );
@@ -109,12 +118,16 @@ class Form_builderControllerform_builder extends JControllerAdmin {
 		$db = JFactory::getDBO();
 		$query = "SELECT a.id, a.name,a.sql,a.json,a.html" .
 			" FROM formbuilder_forms AS a" .
-			" WHERE a.id = " . JRequest::getVar( 'id' );
+			" WHERE a.id = " . $id;
 		$db->setQuery( $query, 0, 10 );
 		if($rows = $db->loadObjectList()) {
 	?>
 	
-	<form id="form1" name="form1" method="post" action="index.php?option=com_formbuilder&task=update">
+	<form id="adminForm" name="adminForm" method="post" action="index.php?option=com_formbuilder&task=update">
+		<input type="hidden" name="task" value="" />
+		<input type="hidden" name="id" value="<?php echo $id ?>" />
+		<?php echo JHtml::_('form.token'); ?>
+		<input type="hidden" name="boxchecked" value="0" />
 		<!-- div>
 			SQL:
 			<textarea name="sql" class="span12" rows="4" id="sql"><?php  echo $rows[0]->sql;  ?></textarea>
@@ -127,14 +140,11 @@ class Form_builderControllerform_builder extends JControllerAdmin {
 			HTML:
 			<textarea name="html" class="span12" rows="12" id="html"><?php  echo $rows[0]->html;  ?></textarea>
 		</div -->
-		<div>
+		<!-- div>
 			<label>Location (optional) : </label>
 			<input name="location" class="span12" type="text" id="location" value='<?php echo ''; ?>' />
 			<input name="id" type="hidden" id="id" value='<?php echo $rows[0]->id; ?>' />
-		</div>
-		<div>
-			<input type="submit" name="Submit" value="Record Changes" />
-		</div>
+		</div -->
 	</form>
 	<script>
 		var json = JSON.stringify(JSON.parse(jQuery("#json").text()), null, "\t");
