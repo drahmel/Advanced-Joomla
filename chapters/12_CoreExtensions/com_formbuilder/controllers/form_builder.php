@@ -25,24 +25,19 @@ class Form_builderControllerform_builder extends JControllerAdmin {
 		
 		// Retrieve data from form
 		$fldJSON = $db->quote($app->input->getVar('json'));
-		$fldID = $app->input->getInt('id');
+		$id = $app->input->getInt('id');
 		
-		// Record updates to jos_guestbook table
-		$insertFields = "UPDATE formbuilder_forms " .
-			" SET json=" . $fldJSON . " " .
-			" WHERE id = " . $fldID ;
-		$db->setQuery( $insertFields, 0);
-		$result = $db->query();
-		/*
-		if($result) {
-			echo "<h3>Form updated!</h3>";
-			echo "<a href='index.php?option=com_formbuilder'>Return to form list</a>";
+		if(empty($id)) {
+			
 		} else {
-			echo "<h3>Problem updating</h3>";
-			echo "<a href='index.php?option=com_formbuilder'>Return to form list</a>";			
+			// Record updates to jos_guestbook table
+			$insertFields = "UPDATE formbuilder_forms " .
+				" SET json=" . $fldJSON . " " .
+				" WHERE id = " . $fldID ;
+			$db->setQuery( $insertFields, 0);
+			$result = $db->query();
+			$app->enqueueMessage (JText::_ ('Form updated!'));
 		}
-		*/
-		$app->enqueueMessage (JText::_ ('Form updated!'));    
 		if($app->input->getVar('task') == 'apply') {
 			$this->setRedirect (JRoute::_ ("index.php?option=com_formbuilder&task=edit&id=$fldID", false));
 		} else {
